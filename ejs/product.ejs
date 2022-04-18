@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/header.css">
+    <link rel="stylesheet" href="/footer.css">
+    <link rel="stylesheet" href="/product.css">
+    <link rel="icon" type="images/png" href="/leaf-icon.png"/>
+    <title><%= card.Name %></title>
+</head>
+<body>
+    <%- include('./partials/header.ejs') %>
+
+    <div class="content">
+        <div class="product-container">
+            <div class="product-image-container">
+                <img src="/tiger-milk.svg" alt="<%= card.Name %>" class="product-image"/>
+            </div>
+            <div class="product-info-container">
+                <div class="main-product-information">
+                    <h1 class="product-name"><%= card.Name %></h1>
+                    <h1 class="product-price">&#x20bd; <%= card.Price %></h1>
+                    <button class="add-to-cart">add to cart</button>
+                </div>
+                <div class="product-description-container">
+                    <h2 class="product-description-title">about this them</h2>
+                    <p class="product-description-text"><%= card.Description %></p>
+                </div>
+            </div>
+        </div>
+        <img src="/little-orange.svg" alt="mini-orange" class="little-orange-1">
+        <img src="/little-pineapple.svg" alt="mini-orange" class="little-pineapple-1">
+        <img src="/little-orange.svg" alt="mini-orange" class="little-orange-2">
+        <img src="/little-pineapple.svg" alt="mini-orange" class="little-pineapple-2">
+        <img src="/little-orange.svg" alt="mini-orange" class="little-orange-3">
+        <img src="/little-pineapple.svg" alt="mini-orange" class="little-pineapple-3">
+        <img src="/little-orange.svg" alt="mini-orange" class="little-orange-4">
+        <img src="/little-pineapple.svg" alt="mini-orange" class="little-pineapple-4">
+    </div>
+
+    <%- include('./partials/footer.ejs') %>
+</body>
+</html>

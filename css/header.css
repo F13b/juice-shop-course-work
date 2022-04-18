@@ -1,0 +1,49 @@
+.header {
+    width: 85%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 0;
+}
+
+.logo-activities {
+    display: flex;
+    align-items: center;
+}
+
+.activities {
+    margin-left: 20px;
+}
+
+.activities-list {
+    list-style-type: none;
+}
+
+.acount-activities {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cart-block {
+    display: flex;
+    margin-right: 30px;
+}
+
+.cart-summ {
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.account-link {
+    background-color: hsl(103, 59%, 39%);
+    padding: 10px 25px;
+    color: #fff !important;
+    border-radius: 5px;
+    outline: none;
+}
+
+.account-link:hover {
+    background-color: hsl(103, 60%, 35%);
+}

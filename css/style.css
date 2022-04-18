@@ -1,0 +1,220 @@
+/* Global styles */
+
+html, body {
+    font-family: 'Ubuntu', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.link {
+    text-decoration: none;
+    color: #000;
+    outline: none;
+}
+
+body::-webkit-scrollbar {
+    width: 7px;
+    padding: 20px 0;
+}
+
+body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: rgba(207, 199, 199, 0.9);
+    border-radius: 3px;
+} 
+
+/* Imports */
+
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+/* Main content */
+
+.vis-banner {
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+    margin: 0 auto;
+    align-items: center;
+    position: relative;
+}
+
+.title {
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 18px;
+    letter-spacing: 0.455em;
+    margin-bottom: 15px;
+    margin-top: 29px;
+}
+
+.ref-juice-desc {
+    font-size: 48px;
+    line-height: 57px;
+    margin: 0;
+    margin-bottom: 30px;
+}
+
+.shop-link {
+    background-color: hsl(103, 59%, 39%);
+    padding: 10px 40px;
+    color: #fff;
+    border-radius: 5px;
+    outline: none;
+}
+
+.shop-link:hover {
+    background-color: hsl(103, 60%, 35%);
+}
+
+.main-juice {
+    width: 850px;
+    height: 900px;
+}
+
+.mini-leaf-1 {
+    position: absolute;
+    rotate: 120deg;
+    left: 60%;
+    top: 70%;
+}
+
+.about-juice-container {
+    background-color: #4A9E29;
+    position: relative;
+}
+
+.about-juice {
+    width: 50%;
+    margin: 0 auto;
+    color: #fff;
+    padding: 45px 0;
+    z-index: 10;
+    position: relative;
+}
+
+.about-juice-title {
+    font-size: 26px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    letter-spacing: 0.455em;
+    text-transform: uppercase;
+}
+
+.about-juice-main-title {
+    margin-bottom: 30px;
+    margin-top: 0;
+    font-size: 54px;
+}
+
+.about-juice-main-text {
+    margin: 0;
+    font-size: 30px;
+    line-height: 48px;
+}
+
+.fruit-image-1 {
+    position: absolute;
+    top: 10%;
+    left: 25%;
+    z-index: 5;
+}
+
+.fruit-image-2 {
+    position: absolute;
+    top: 60%;
+    left: 55%;
+    z-index: 5;
+    rotate: -90deg;
+}
+
+.fruit-image-3 {
+    position: absolute;
+    top: 40%;
+    left: 15%;
+    z-index: 5;
+    rotate: -45deg;
+}
+
+.fruit-image-4 {
+    position: absolute;
+    top: 30%;
+    left: 85%;
+    z-index: 5;
+    rotate: 60deg;
+}
+
+.our-product {
+    margin-top: 100px;
+    text-align: center;
+    position: relative;
+}
+
+.product-range {
+    text-align: center;
+    font-size: 36px;
+    margin: 0;
+}
+
+.product-cards-mini-block {
+    width: 250px;
+    display: flex;
+    width: 70%;
+    margin: 0 auto;
+    justify-content: space-between;
+    margin-top: 80px;
+}
+
+.product-image {
+    width: 250px;
+}
+
+.product-name {
+    text-align: center;
+    margin: 0;
+}
+
+.shop-link-container {
+    margin-top: 100px;
+    margin-bottom: 150px;
+}
+
+.shop_link-2 {
+    padding: 10px 45px;
+    border: 1px solid #4A9E29;
+    border-radius: 5px;
+    color: #4A9E29;
+}
+
+.little-orange {
+    top: 3%;
+    left: 15%;
+    position: absolute;
+}
+
+.little-pineapple {
+    bottom: 5%;
+    right: 15%;
+    position: absolute;
+}
+
+.partners-block {
+    background-color: #4A9E29;
+    padding: 40px 0;
+}
+
+.partners-block-first {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.partners-block-second {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+}
