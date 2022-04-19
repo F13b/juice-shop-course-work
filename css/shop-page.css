@@ -53,6 +53,7 @@ body::-webkit-scrollbar-thumb {
     padding: 23px 23px 27px 23px;
     text-align: left;
     cursor: pointer;
+    transition: all .4s ease;
 }
 
 .product-card:hover {

@@ -63,6 +63,7 @@ body::-webkit-scrollbar-thumb {
     color: #fff;
     border-radius: 5px;
     outline: none;
+    transition: all .4s ease;
 }
 
 .shop-link:hover {

@@ -15,8 +15,8 @@
 
     <div class="content">
         <div class="product-cards-container">
-            <% if (cards.length) {%>
-                <% cards.forEach(({id, Name, Price}) => { %>
+            <% if (juice.length) {%>
+                <% juice.forEach(({id, Name, Price}) => { %>
                     <div class="product-card">
                         <a href="/shop/<%= id %>" class="card-product-link">
                             <img src="/tiger-milk.svg" alt="<%= Name %>" class="card-product-image"/>

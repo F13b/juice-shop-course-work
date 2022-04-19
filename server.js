@@ -1,46 +1,19 @@
 // add dependences
 const express = require('express');
 const path = require('path'); 
-// const mongoose = require('mongoose');
-
-const { initializeApp } = require("firebase/app");
-const { getFirestore, collection, getDocs } = require('firebase/firestore/lite');
-const firebase = require("firebase");
+const mongoose = require('mongoose');
 
 // function for create path to files 
 const createPath = (page) => path.resolve(__dirname, 'ejs', `${page}.ejs`);
 
 // export shemes
-const User = require('/Users/pakon/Documents/course-work/models/User');
-
-const firebaseConfig = {
-    apiKey: "AIzaSyBihLfJPWerV8qWMWKehb3MzFM0INjeonA",
-    authDomain: "course-e1b45.firebaseapp.com",  
-    projectId: "course-e1b45",  
-    storageBucket: "course-e1b45.appspot.com",  
-    messagingSenderId: "252872003139",  
-    appId: "1:252872003139:web:3aabe8c55b25e038dc0ef6",  
-    measurementId: "G-SE8WDMSZG1"  
-};
-
-const fireApp = initializeApp(firebaseConfig);
-const db = fireApp.firestore();
-
-const addUser = async (req, res, next) => {
-    try {
-        const data = req.body;
-        await firestore.collection("users").doc().set(data);
-        res.send('seccess');
-    } catch (e) {
-        res.status(400).send(e.message);
-    }
-}
+const User = require(__dirname + '/models/User');
+const Juice = require(__dirname + '/models/Juice');
 
 // create express app
 const app = express();
 
-// set port
-const PORT = 3000;
+PORT=3000;
 
 // set listening port
 app.listen(PORT, (error) => {
@@ -50,6 +23,13 @@ app.listen(PORT, (error) => {
 // set view engine
 app.set('view engine', 'ejs');
 
+DB='mongodb://localhost:27017/course'
+
+mongoose
+    .connect(DB, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then((res) => console.log('Connect successfull'))
+    .catch((error) => console.log(error))
+
 // set static resources
 app.use(express.static('css'));
 app.use(express.static('icons'));
@@ -57,10 +37,6 @@ app.use(express.urlencoded({ extended: false }));
 
 // create routing
 app.get('/', (req, res) => { 
-    const querySnapshot = getDocs(collection(fireDB, "test"));
-    querySnapshot.forEach((doc) => {
-        console.log(`${doc.id} => ${doc.data()}`);
-    });
     res.render(createPath('index'));
 });
 
@@ -80,35 +56,61 @@ app.get('/auth', (req, res) => {
     res.render(createPath('auth'));
 });
 
-// create 'post' query
-app.post('/add-product', (req, res) => {
-    // const {Name, Description, Price, Picture} = req.body;
-
-    // const card = new Card ({Name, Description, Price, Picture});
-    // card
-    //     .save()
-    //     .then((result) => res.redirect('/account'))
-    //     .catch((error) => console.log(error));
-});
-
-app.post('/auth', addUser);
-
 app.get('/shop', (req, res) => {
-    // Card
-    // .find()
-    // .then((cards) =>{
-    //     res.render(createPath('shop'), {cards});
-    // })
-    // .catch((error) => console.log(error));
+    Juice
+    .find()
+    .then((juice) =>{
+        res.render(createPath('shop'), {juice});
+    })
+    .catch((error) => console.log(error));
 });
 
 app.get('/shop/:id', (req, res) => {
-    // Card
-    // .findById(req.params.id)
-    // .then((card) =>{
-    //     res.render(createPath('product'), {card});
-    // })
-    // .catch((error) => console.log(error));
+    Juice
+    .findById(req.params.id)
+    .then((juice) =>{
+        res.render(createPath('product'), {juice});
+    })
+    .catch((error) => console.log(error));
+});
+
+app.get('/all-products', (req, res) => {
+    Juice
+    .find()
+    .then((juice) =>{
+        res.render(createPath('all-products'), {juice});
+    })
+    .catch((error) => console.log(error));
+});
+
+// create 'post' query
+app.post('/add-product', (req, res) => {
+    const {Name, Description, Price} = req.body;
+
+    const product = new Juice ({Name, Description, Price});
+    product
+        .save()
+        .then((result) => res.redirect('/shop'))
+        .catch((error) => console.log(error));
+});
+
+app.post('/auth', (req, res) => {
+    const {Name, Password, Role} = req.body;
+
+    const user = new User ({Name, Password, Role});
+    user
+        .save()
+        .then((result) => res.redirect('/account'))
+        .catch((error) => console.log(error));
+});
+
+app.delete('/all-products/:id', (req, res) => {
+    Juice
+    .findByIdAndDelete(req.params.id)
+    .then((result) =>{
+        res.sendStatus(200);
+    })
+    .catch((error) => console.log(error));
 });
 
 // set error 

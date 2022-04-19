@@ -82,6 +82,7 @@ body::-webkit-scrollbar-thumb {
     border: 1px solid #4A9E29;
     padding: 10px 30px;
     cursor: pointer;
+    transition: all .4s ease;
 }
 
 .add-to-cart:hover {

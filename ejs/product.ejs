@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/footer.css">
     <link rel="stylesheet" href="/product.css">
     <link rel="icon" type="images/png" href="/leaf-icon.png"/>
-    <title><%= card.Name %></title>
+    <title><%= juice.Name %></title>
 </head>
 <body>
     <%- include('./partials/header.ejs') %>
@@ -16,17 +16,17 @@
     <div class="content">
         <div class="product-container">
             <div class="product-image-container">
-                <img src="/tiger-milk.svg" alt="<%= card.Name %>" class="product-image"/>
+                <img src="/tiger-milk.svg" alt="<%= juice.Name %>" class="product-image"/>
             </div>
             <div class="product-info-container">
                 <div class="main-product-information">
-                    <h1 class="product-name"><%= card.Name %></h1>
-                    <h1 class="product-price">&#x20bd; <%= card.Price %></h1>
+                    <h1 class="product-name"><%= juice.Name %></h1>
+                    <h1 class="product-price">&#x20bd; <%= juice.Price %></h1>
                     <button class="add-to-cart">add to cart</button>
                 </div>
                 <div class="product-description-container">
                     <h2 class="product-description-title">about this them</h2>
-                    <p class="product-description-text"><%= card.Description %></p>
+                    <p class="product-description-text"><%= juice.Description %></p>
                 </div>
             </div>
         </div>
