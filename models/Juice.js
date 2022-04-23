@@ -13,6 +13,10 @@ const JuiceShema = new Schema({
     Price: {
         type: String,
         required: true
+    },
+    Count: {
+        type: String,
+        required: true
     }
 }); 
 

@@ -4,15 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/add-product.css">
+    <link rel="stylesheet" href="/header.css">
+    <link rel="icon" type="images/png" href="/leaf-icon.png"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Add product</title>
 </head>
 <body>
-    <form action="/add-product" class="add-product" method="post" >
-        <input type="text" name="Name" class="product-attribute-field" placeholder="намиеновае продукта">
-        <textarea type="text" name="Description" class="product-attribute-field" placeholder="описание"></textarea>
-        <input type="number" min="0" value="0" name="Price" class="product-attribute-field" placeholder="цена">
-        <input type="file" name="Picture" class="product-attribute-field" placeholder="картинка">
-        <button type="submit">Add</button>
-    </form>
+    <%- include('./partials/header.ejs') %>
+    <div class="form-container">
+        <form action="/add-product" class="add-product-form" method="post">
+            <div class="product-attribute-container">
+                <label for="Name" class="product-attribute-label">Наименование продукта <span class="required">*</span></label>
+                <input type="text" name="Name" class="product-attribute-field name-field" required>
+            </div>
+            <div class="product-attribute-container">
+                <label for="Description" class="product-attribute-label">Описание продукта <span class="required">*</span></label>
+                <textarea type="text" name="Description" class="product-attribute-field description-field" required></textarea>
+            </div>
+            <div class="product-attribute-container">
+                <label for="Price" class="product-attribute-label">Цена продукта (за единицу товара) <span class="required">*</span></label>
+                <input type="number" min="0" placeholder="0" name="Price" class="product-attribute-field" required>
+            </div>
+            <div class="product-attribute-container">
+                <label for="Count" class="product-attribute-label">Количество товара на складе (в штуках) <span class="required">*</span></label>
+                <input type="number" min="0" placeholder="0" name="Count" class="product-attribute-field" required>
+            </div>
+            <div class="product-attribute-container">
+                <label for="Picture" class="product-attribute-label">Фото товара (максимум 5 изображений) <span class="required">*</span></label>
+                <input type="file" name="Picture" class="product-attribute-field picture-input" required>
+            </div>
+            <div class="buttons-container">
+                <button type="submit" class="action-button-add btn">Добавить</button>
+                <a href="/all-products" class="action-button-decline btn">Отмена</a>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

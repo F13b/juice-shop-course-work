@@ -2,6 +2,7 @@
 const express = require('express');
 const path = require('path'); 
 const mongoose = require('mongoose');
+const methodOverride = require('method-override');
 
 // function for create path to files 
 const createPath = (page) => path.resolve(__dirname, 'ejs', `${page}.ejs`);
@@ -34,14 +35,19 @@ mongoose
 app.use(express.static('css'));
 app.use(express.static('icons'));
 app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride('_method')); 
 
 // create routing
-app.get('/', (req, res) => { 
+app.get('/main', (req, res) => { 
     res.render(createPath('index'));
 });
 
 app.get('/home', (req, res) => {
-    res.redirect('/');
+    res.redirect('/main');
+});
+
+app.get('/', (req, res) => {
+    res.redirect('/main');
 });
 
 app.get('/account', (req, res) => {
@@ -52,8 +58,12 @@ app.get('/add-product', (req, res) => {
     res.render(createPath('add-product'));
 });
 
-app.get('/auth', (req, res) => {
-    res.render(createPath('auth'));
+app.get('/registration', (req, res) => {
+    res.render(createPath('reg'));
+});
+
+app.get('/reg', (req, res) => {
+    res.redirect('/registration');
 });
 
 app.get('/shop', (req, res) => {
@@ -83,6 +93,24 @@ app.get('/all-products', (req, res) => {
     .catch((error) => console.log(error));
 });
 
+app.get('/all-products', (req, res) => {
+    Juice
+    .find()
+    .then((juice) =>{
+        res.render(createPath('all-products'), {juice});
+    })
+    .catch((error) => console.log(error));
+});
+
+app.get('/edit/:id', (req, res) => {
+    Juice
+    .findById(req.params.id)
+    .then((juice) =>{
+        res.render(createPath('edit-product'), {juice});
+    })
+    .catch((error) => console.log(error));
+});
+
 // create 'post' query
 app.post('/add-product', (req, res) => {
     const {Name, Description, Price} = req.body;
@@ -92,6 +120,17 @@ app.post('/add-product', (req, res) => {
         .save()
         .then((result) => res.redirect('/shop'))
         .catch((error) => console.log(error));
+});
+
+app.put('/edit/:id', (req, res) => {
+    const {Name, Description, Price} = req.body;
+    const { id } = req.params;
+    Juice
+    .findByIdAndUpdate(id, {Name, Description, Price})
+    .then((result) =>{
+        res.redirect('/all-products');
+    })
+    .catch((error) => console.log(error));
 });
 
 app.post('/auth', (req, res) => {
@@ -108,7 +147,7 @@ app.delete('/all-products/:id', (req, res) => {
     Juice
     .findByIdAndDelete(req.params.id)
     .then((result) =>{
-        res.sendStatus(200);
+        res.sendStatus(200).redirect('/shop');
     })
     .catch((error) => console.log(error));
 });

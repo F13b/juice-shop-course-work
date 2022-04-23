@@ -13,7 +13,7 @@ html, body {
 }
 
 body::-webkit-scrollbar {
-    width: 7px;
+    width: 0.438rem;
     padding: 20px 0;
 }
 
@@ -65,6 +65,7 @@ body::-webkit-scrollbar-thumb {
     cursor: pointer;
     margin-top: 20px;
     width: 1530.39px;
+    display: flex;
     transition: all .4s ease;
 }
 
@@ -74,7 +75,6 @@ body::-webkit-scrollbar-thumb {
 }
 
 .card-product-link {
-    display: flex;
     text-decoration: none;
 }
 
@@ -123,6 +123,10 @@ body::-webkit-scrollbar-thumb {
     margin: 0 0 10px 0;
 }
 
+.product-card-text-container {
+    flex-grow: 2;
+}
+
 .product-card-actions-container {
     text-align: right;
 }
@@ -143,6 +147,7 @@ svg path {
 .product-delete-icon {
     transition: all .4s ease;
     padding: 5px 8px;
+    cursor: pointer;
 }
 
 .product-delete-icon:hover {

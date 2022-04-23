@@ -1,0 +1,131 @@
+/* Clobal styles */
+
+html, body {
+    font-family: 'Ubuntu', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.link {
+    text-decoration: none;
+    color: #000;
+    outline: none;
+}
+
+body::-webkit-scrollbar {
+    width: 7px;
+    padding: 20px 0;
+}
+
+body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: rgba(207, 199, 199, 0.9);
+    border-radius: 3px;
+} 
+
+input, label {
+    display: block;
+}
+
+/* Imports */
+
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway&family=Ubuntu&display=swap');
+
+/* Content */
+
+.form-container {
+    width: 80%;
+    margin: 0  auto;
+}
+
+.add-product-form {
+    width: 65%;
+    margin: 0  auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-attribute-container  {
+    margin-bottom: 1.5rem;
+}
+
+.product-attribute-label {
+    padding-bottom: 0.5rem;
+    font-size: .99rem;
+}
+
+.required {
+    font-size: 1.1rem;
+    color: red;
+}
+
+.product-attribute-field {
+    width: 100%;
+    outline: none;
+    font-size: 1.15rem;
+    height: 1.4em;
+    padding: 0.45em;
+    background: #FFFFFF;
+    border: 1px solid #DADADA;
+    border-radius: 5px;
+}
+
+.picture-input {
+    border: 1px solid transparent !important;
+}
+
+.description-field {
+    height: 12.5rem;
+    resize: none;
+}
+
+.name-field {
+    text-transform: capitalize;
+}
+
+.buttons-container {
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.action-button-add {
+    width: 35%;
+    padding: 8px 12px;
+    appearance: none;
+    border: 1px solid transparent;
+    background-color: hsl(103, 59%, 39%);
+    border-radius: 5px;
+    outline: none;
+    transition: all .4s ease;
+    color: #fff;
+    font-size: 1.15rem;
+}
+
+.action-button-add:hover {
+    background-color: hsl(103, 60%, 35%);
+}
+
+.action-button-decline {
+    width: 35%;
+    padding: 8px 0;
+    appearance: none;
+    border: 1px solid transparent;
+    background-color: hsl(0, 100%, 50%);
+    border-radius: 5px;
+    outline: none;
+    transition: all .4s ease;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    font-size: 1.15rem;
+}
+
+.action-button-decline:hover {
+    background-color: hsl(0, 100%, 40%);
+}

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit product</title>
+</head>
+<body>
+    <form action="/edit/<%= juice.id %>?_method=PUT" class="edit-product" method="post">
+        <input type="text" name="Name" class="product-attribute-field" placeholder="намиеновае продукта" value="<%= juice.Name %>">
+        <textarea type="text" name="Description" class="product-attribute-field" placeholder="описание"><%= juice.Description %></textarea>
+        <input type="number" min="0" value="<%= juice.Price %>" name="Price" class="product-attribute-field" placeholder="цена">
+        <input type="file" name="Picture" class="product-attribute-field" placeholder="картинка">
+        <%= juice.id %>
+        <button type="submit">Add</button>
+    </form>
+</body>
+</html>
