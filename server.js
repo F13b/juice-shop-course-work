@@ -1,15 +1,10 @@
 // add dependences
 const express = require('express');
-const path = require('path'); 
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
-
-// function for create path to files 
-const createPath = (page) => path.resolve(__dirname, 'ejs', `${page}.ejs`);
-
-// export shemes
-const User = require(__dirname + '/models/User');
-const Juice = require(__dirname + '/models/Juice');
+const productRouter = require('./routes/product-routes')
+const userRouter = require('./routes/user-routes')
+const createPath = require('./helpers/create-path');
 
 // create express app
 const app = express();
@@ -36,6 +31,8 @@ app.use(express.static('css'));
 app.use(express.static('icons'));
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method')); 
+app.use(productRouter); 
+app.use(userRouter); 
 
 // create routing
 app.get('/main', (req, res) => { 
@@ -48,108 +45,6 @@ app.get('/home', (req, res) => {
 
 app.get('/', (req, res) => {
     res.redirect('/main');
-});
-
-app.get('/account', (req, res) => {
-    res.render(createPath('account'));
-});
-
-app.get('/add-product', (req, res) => {
-    res.render(createPath('add-product'));
-});
-
-app.get('/registration', (req, res) => {
-    res.render(createPath('reg'));
-});
-
-app.get('/reg', (req, res) => {
-    res.redirect('/registration');
-});
-
-app.get('/shop', (req, res) => {
-    Juice
-    .find()
-    .then((juice) =>{
-        res.render(createPath('shop'), {juice});
-    })
-    .catch((error) => console.log(error));
-});
-
-app.get('/shop/:id', (req, res) => {
-    Juice
-    .findById(req.params.id)
-    .then((juice) =>{
-        res.render(createPath('product'), {juice});
-    })
-    .catch((error) => console.log(error));
-});
-
-app.get('/all-products', (req, res) => {
-    Juice
-    .find()
-    .then((juice) =>{
-        res.render(createPath('all-products'), {juice});
-    })
-    .catch((error) => console.log(error));
-});
-
-app.get('/all-products', (req, res) => {
-    Juice
-    .find()
-    .then((juice) =>{
-        res.render(createPath('all-products'), {juice});
-    })
-    .catch((error) => console.log(error));
-});
-
-app.get('/edit/:id', (req, res) => {
-    Juice
-    .findById(req.params.id)
-    .then((juice) =>{
-        res.render(createPath('edit-product'), {juice});
-    })
-    .catch((error) => console.log(error));
-});
-
-// create 'post' query
-app.post('/add-product', (req, res) => {
-    const {Name, Description, Price} = req.body;
-
-    const product = new Juice ({Name, Description, Price});
-    product
-        .save()
-        .then((result) => res.redirect('/shop'))
-        .catch((error) => console.log(error));
-});
-
-app.put('/edit/:id', (req, res) => {
-    const {Name, Description, Price} = req.body;
-    const { id } = req.params;
-    Juice
-    .findByIdAndUpdate(id, {Name, Description, Price})
-    .then((result) =>{
-        res.redirect('/all-products');
-    })
-    .catch((error) => console.log(error));
-});
-
-app.post('/auth', (req, res) => {
-    const {Name, Password, Role} = req.body;
-
-    const user = new User ({Name, Password, Role});
-    user
-        .save()
-        .then((result) => res.redirect('/account'))
-        .catch((error) => console.log(error));
-});
-
-app.delete('/all-products/:id', (req, res) => {
-    Juice
-    .findByIdAndDelete(req.params.id)
-    .then((result) =>{
-        res.sendStatus(200).redirect('/shop');
-    })
-    .catch((error) => console.log(error));
 });
 
 // set error 
