@@ -9,20 +9,16 @@ const createPath = require('./helpers/create-path');
 // create express app
 const app = express();
 
-PORT=3000;
-
 // set listening port
-app.listen(PORT, (error) => {
-    error ? console.log(error) : console.log(`listening port ${PORT}`);
+app.listen(process.env.PORT, (error) => {
+    error ? console.log(error) : console.log(`listening port ${process.env.PORT}`);
 });
 
 // set view engine
 app.set('view engine', 'ejs');
 
-DB='mongodb://localhost:27017/course'
-
 mongoose
-    .connect(DB, { useNewUrlParser: true, useUnifiedTopology: true })
+    .connect(process.env.DB, { useNewUrlParser: true, useUnifiedTopology: true })
     .then((res) => console.log('Connect successfull'))
     .catch((error) => console.log(error))
 
