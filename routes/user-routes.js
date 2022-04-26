@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User');
+const { Registrate, Authorize } = require('../controllers/user-controller')
 const createPath = require('../helpers/create-path');
 
 router.get('/account', (req, res) => {
@@ -15,14 +15,12 @@ router.get('/reg', (req, res) => {
     res.redirect('/registration');
 });
 
-router.post('/registration', (req, res) => {
-    const {Name, Password, Role} = req.body;
+router.post('/registration', Registrate);
 
-    const user = new User ({Name, Password, Role});
-    user
-        .save()
-        .then((result) => res.redirect('/account'))
-        .catch((error) => console.log(error));
+router.get('/authorization', (req, res) => {
+    res.render(createPath('auth'))
 });
+
+router.get('/authorize', Authorize);
 
 module.exports = router;

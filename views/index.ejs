@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/header.css">
     <link rel="stylesheet" href="/footer.css">
     <link rel="icon" type="images/png" href="/leaf-icon.png"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <title>Main</title>
 </head>
 <body>
@@ -29,37 +30,37 @@
         </div>
         <div class="about-juice-container">
             <div class="about-juice">
-                <p class="about-juice-title">product story</p>
-                <h1 class="about-juice-main-title">What is the juice?</h1>
-                <p class="about-juice-main-text">
+                <p class="about-juice-title animate__animated animate__fadeInUp wow" data-wow-duration="1s" data-wow-delay="0.1s">product story</p>
+                <h1 class="about-juice-main-title animate__animated animate__fadeInUp wow" data-wow-duration="1s" data-wow-delay="0.3s">What is the juice?</h1>
+                <p class="about-juice-main-text animate__animated animate__fadeInUp wow" data-wow-duration="1s" data-wow-delay="0.5s">
                     100% juice are produced from concentrated process, some
                     of the water from the crushed juice. This way all the
                     minerals and vitamins are concealed in the juice box for
                     your later consumption.
                 </p>
             </div>
-            <img src="/middle-green-leaf.svg" alt="leaf" class="fruit-image-1">
-            <img src="/middle-green-leaf.svg" alt="leaf" class="fruit-image-2">
-            <img src="/pineapple.svg" alt="pineapple" class="fruit-image-3">
-            <img src="/orange.svg" alt="orange" class="fruit-image-4">
+            <img src="/middle-green-leaf.svg" alt="leaf" class="fruit-image-1 animate__animated animate__fadeIn wow" data-wow-duration="1s" data-wow-delay="0.1s">
+            <img src="/middle-green-leaf.svg" alt="leaf" class="fruit-image-2 animate__animated animate__fadeIn wow" data-wow-duration="1s" data-wow-delay="0.1s">
+            <img src="/pineapple.svg" alt="pineapple" class="fruit-image-3 animate__animated animate__fadeIn wow" data-wow-duration="1s" data-wow-delay="0.1s">
+            <img src="/orange.svg" alt="orange" class="fruit-image-4 animate__animated animate__fadeIn wow" data-wow-duration="1s" data-wow-delay="0.1s">
         </div>
         <div class="our-product">
-            <h1 class="product-range">Our product range</h1>
+            <h1 class="product-range animate__animated animate__fadeInUp wow" data-wow-duration="1s" data-wow-delay="0.1s">Our product range</h1>
             <div class="product-cards-mini-block">
-                <div class="product-card-mini-block">
+                <div class="product-card-mini-block animate__animated animate__fadeInUp wow" data-wow-duration="1s" data-wow-delay="0.1s">
                     <img src="tiger-milk.svg" alt="product" class="product-image">
                     <p class="product-name">Tiger Nut Milk</p>
                 </div>
-                <div class="product-card-mini-block">
+                <div class="product-card-mini-block animate__animated animate__fadeInUp wow" data-wow-duration="1s" data-wow-delay="0.2s">
                     <img src="tiger-milk.svg" alt="product" class="product-image">
                     <p class="product-name">Tiger Nut Milk</p>
                 </div>
-                <div class="product-card-mini-block">
+                <div class="product-card-mini-block animate__animated animate__fadeInUp wow" data-wow-duration="1s" data-wow-delay="0.3s">
                     <img src="tiger-milk.svg" alt="product" class="product-image">
                     <p class="product-name">Tiger Nut Milk</p>
                 </div>
             </div>
-            <div class="shop-link-container">
+            <div class="shop-link-container animate__animated animate__fadeInUp wow">
                 <a href="/shop" class="shop_link-2 link">Shop Now</a>
             </div>
             <img src="/little-orange.svg" alt="mini-orange" class="little-orange">
@@ -83,5 +84,9 @@
         </div>
     </div>
     <%- include('./partials/footer.ejs') %>
+    <script src="/wow.js"></script>
+    <script>
+        new WOW().init();
+    </script>
 </body>
 </html>
