@@ -21,6 +21,6 @@ router.get('/authorization', (req, res) => {
     res.render(createPath('auth'))
 });
 
-router.get('/authorize', Authorize);
+// router.get('/authorize/auth', Authorize);
 
 module.exports = router;

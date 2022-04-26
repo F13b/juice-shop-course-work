@@ -24,15 +24,21 @@ const Registrate = (req, res) => {
     }
 }
 
-const Authorize = (req, res) => {
+const Authorize = async (req, res) => {
     const {Name, Password} = req.body;
+    console.log(Name)
 
-    User.findOne({Name: Name})
-        .then((result) => {
-            console.log(result)
-            res.redirect('/account')
-        })
-        .catch(error => console.log(error))
+    const candidate = await User.findOne({Name: req.body.Name})
+
+    if (candidate) {
+        console.log(candidate)
+        if (bcrypt.compareSync(Password, candidate.Password)) {
+            res.render(createPath('account'), { "userID": candidate.id, "userRole": candidate.Role });
+        }
+    } else {
+        console.log(candidate)
+        res.redirect('/authorization');
+    }
 }
 
 module.exports = {
