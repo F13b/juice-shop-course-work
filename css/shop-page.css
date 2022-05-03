@@ -106,21 +106,13 @@ body::-webkit-scrollbar-thumb {
     cursor: pointer;
 }
 
-.load-more-products {
-    border: 1px solid #4A9E29;
-    font-family: 'Raleway', sans-serif;
-    box-sizing: border-box;
-    border-radius: 5px;
+.no-products {
     font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 19px;
-    text-transform: capitalize;
-    color: #4A9E29;
-    padding: 12px 17.5px;
-    text-align: center;
-    appearance: none;
-    background: #FFFFFF;
-    margin: 62px auto;
-    cursor: pointer;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 150%;
+    letter-spacing: 0.0275em;
+    color: #121212;
+    margin: 0 auto;
+    font-family: 'Ubuntu', sans-serif;
 }

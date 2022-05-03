@@ -18,9 +18,9 @@ router.get('/reg', (req, res) => {
 router.post('/registration', Registrate);
 
 router.get('/authorization', (req, res) => {
-    res.render(createPath('auth'))
+    res.render(createPath('auth'));
 });
 
-// router.get('/authorize/auth', Authorize);
+router.post('/authorization', Authorize);
 
 module.exports = router;

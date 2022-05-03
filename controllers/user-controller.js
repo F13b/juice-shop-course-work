@@ -1,43 +1,61 @@
 const User = require('../models/User');
-const createPath = require('../helpers/create-path');
+const Role = require('../models/Role')
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const createPath = require('../helpers/create-path');
+const { secret } = require('../js/config');
 
-const Registrate = (req, res) => {
+function createToken(id, role) {
+    const payload = {
+        id, 
+        role
+    }
+
+    return jwt.sign(payload, secret, {expiresIn: '2h'});
+}
+
+const Registrate = async (req, res) => {
     const {Name, Password, ConfirmPassword} = req.body;
 
-    if (Password == ConfirmPassword) {
-        try {
-            const Salt = bcrypt.genSaltSync();
-            const Hash = bcrypt.hashSync(Password, Salt);
+    const candidate = await User.findOne({Name});
 
-            const user = new User ({Name, "Password": Hash, 'Role': 'Nahal'});
-            user
-                .save()
-                .then((result) => res.redirect('/main'))
-                .catch((error) => console.log(error));
+    if (!candidate) {
+        if (Password == ConfirmPassword) {
+            try {
+                const Salt = await bcrypt.genSalt();
+                const HashedPassword = await bcrypt.hash(Password, Salt);
 
-        } catch (error) {
-            console.log(error);
+                const userRole = await Role.findOne({Name: 'Manager'});
+                new User({Name, Password: HashedPassword, Role: userRole.Name}).save().then(res.redirect('/main')).catch((error) => console.log(error));
+            } catch (error) {
+                console.log(error);
+                res.status(400).json('Oops....')
+            }
+        } else {
+            res.status(400).json('Wrong conf pass')
         }
     } else {
-        return JSON.stringify({"message": 'Пароли не совпадают'})
+        res.status(400).json('Go to home, bitch!')
     }
 }
 
 const Authorize = async (req, res) => {
     const {Name, Password} = req.body;
-    console.log(Name)
 
-    const candidate = await User.findOne({Name: req.body.Name})
+    const candidate = await User.findOne({Name})
 
-    if (candidate) {
-        console.log(candidate)
-        if (bcrypt.compareSync(Password, candidate.Password)) {
-            res.render(createPath('account'), { "userID": candidate.id, "userRole": candidate.Role });
-        }
+    if (!candidate) {
+        res.status(400).json('Not found')
     } else {
-        console.log(candidate)
-        res.redirect('/authorization');
+        try {
+            const validPassword = await bcrypt.compare(Password, candidate.Password);
+            if (validPassword) {
+                const token = createToken(candidate._id, candidate.Role);
+                res.json(token)
+            }
+        } catch (error) {
+            console.log(error);
+        }
     }
 }
 

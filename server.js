@@ -2,8 +2,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
-const productRouter = require('./routes/product-routes')
-const userRouter = require('./routes/user-routes')
+const productRouter = require('./routes/product-routes');
+const userRouter = require('./routes/user-routes');
+const mainsRouter = require('./routes/main-routes');
 const createPath = require('./helpers/create-path');
 
 // create express app
@@ -29,22 +30,10 @@ app.use(express.static('css'));
 app.use(express.static('icons'));
 app.use(express.static('js'));
 app.use(express.urlencoded({ extended: false }));
-app.use(methodOverride('_method')); 
+app.use(methodOverride('_method'));
+app.use(mainsRouter)
 app.use(productRouter); 
-app.use(userRouter); 
-
-// create routing
-app.get('/main', (req, res) => { 
-    res.render(createPath('index'));
-});
-
-app.get('/home', (req, res) => {
-    res.redirect('/main');
-});
-
-app.get('/', (req, res) => {
-    res.redirect('/main');
-});
+app.use(userRouter);
 
 // set error 
 app.use((req, res) => {

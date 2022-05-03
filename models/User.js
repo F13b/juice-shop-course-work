@@ -12,7 +12,7 @@ const UserShema = new Schema({
     },
     Role: {
         type: String,
-        required: true
+        ref: 'Role'
     }
 }); 
 
