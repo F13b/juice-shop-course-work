@@ -82,6 +82,7 @@ input, label {
 .description-field {
     height: 12.5rem;
     resize: none;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 .name-field {

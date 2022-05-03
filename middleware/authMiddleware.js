@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+
 const { secret } = require('../js/config');
 
 module.exports = function (role) {

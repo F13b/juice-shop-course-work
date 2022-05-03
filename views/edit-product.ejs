@@ -4,16 +4,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/add-product.css">
+    <link rel="stylesheet" href="/header.css">
     <title>Edit product</title>
 </head>
 <body>
-    <form action="/edit/<%= juice.id %>?_method=PUT" class="edit-product" method="post">
-        <input type="text" name="Name" class="product-attribute-field" placeholder="намиеновае продукта" value="<%= juice.Name %>">
-        <textarea type="text" name="Description" class="product-attribute-field" placeholder="описание"><%= juice.Description %></textarea>
-        <input type="number" min="0" value="<%= juice.Price %>" name="Price" class="product-attribute-field" placeholder="цена">
-        <input type="file" name="Picture" class="product-attribute-field" placeholder="картинка">
-        <%= juice.id %>
-        <button type="submit">Add</button>
-    </form>
+    <%- include('./partials/header.ejs') %>
+    <div class="form-container">
+        <form action="/edit/<%= juice.id %>?_method=PUT" class="add-product-form" method="post">
+            <div class="product-attribute-container">
+                <label for="Name" class="product-attribute-label">Product Name <span class="required">*</span></label>
+                <input type="text" name="Name" class="product-attribute-field" placeholder="Product Name" value="<%= juice.Name %>">
+            </div>
+            <div class="product-attribute-container">
+                <label for="Name" class="product-attribute-label">Product Description <span class="required">*</span></label>
+                <textarea type="text" name="Description" class="description-field product-attribute-field" placeholder="Product Description"><%= juice.Description %></textarea>
+            </div>
+            <div class="product-attribute-container">
+                <label for="Name" class="product-attribute-label">Product Price (Per Unit) <span class="required">*</span></label>
+                <input type="number" min="0" value="<%= juice.Price %>" name="Price" class="product-attribute-field" placeholder="Product Price (Per Unit)">
+            </div>
+            <div class="product-attribute-container">
+                <label for="Name" class="product-attribute-label">Product photo (max 5 images) <span class="required">*</span></label>
+                <input type="file" name="Picture" class="product-attribute-field picture-input" placeholder="Product photo (max 5 images)">
+            </div>
+            <div class="buttons-container">
+                <button type="submit" class="action-button-add btn">Edit</button>
+                <a href="/all-products" class="action-button-decline btn">Cancel</a>
+            </div>
+        </form>
+    </div>
 </body>
 </html>

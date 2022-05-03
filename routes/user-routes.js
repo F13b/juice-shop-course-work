@@ -7,20 +7,28 @@ router.get('/account', (req, res) => {
     res.render(createPath('account'));
 });
 
-router.get('/registration', (req, res) => {
+router.get('/signup', (req, res) => {
     res.render(createPath('reg'));
 });
 
 router.get('/reg', (req, res) => {
-    res.redirect('/registration');
+    res.redirect('/signup');
 });
 
-router.post('/registration', Registrate);
+router.post('/signup', Registrate);
 
-router.get('/authorization', (req, res) => {
+router.get('/signin', (req, res) => {
     res.render(createPath('auth'));
 });
 
-router.post('/authorization', Authorize);
+router.get('/auth', (req, res) => {
+    res.redirect('/signin');
+});
+
+router.get('/authorization', (req, res) => {
+    res.redirect('/signin');
+});
+
+router.post('/signin', Authorize);
 
 module.exports = router;
