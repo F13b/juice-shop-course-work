@@ -72,7 +72,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .buttons-container {
-    width: 50%;
+    width: 70%;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -97,7 +97,7 @@ body::-webkit-scrollbar-thumb {
 
 .action-button-auth {
     width: 47%;
-    padding: 8px 0;
+    padding: 8px 12px;
     appearance: none;
     border: 1px solid transparent;
     background-color: hsl(103, 59%, 39%);

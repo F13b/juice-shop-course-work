@@ -27,5 +27,5 @@
     top: 40%;
     left: 15%;
     position: absolute;
-    rotate: 135deg;
+    transform: rotate(135deg);
 }
