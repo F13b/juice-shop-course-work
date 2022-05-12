@@ -16,10 +16,11 @@
     <div class="content">
         <div class="product-cards-container">
             <% if (juice.length) {%>
-                <% juice.forEach(({id, Name, Price}) => { %>
+                <% juice.forEach(({id, Name, Price, Images}) => { %>
                     <div class="product-card">
                         <a href="/shop/<%= id %>" class="card-product-link">
-                            <img src="/tiger-milk.svg" alt="<%= Name %>" class="card-product-image"/>
+                            <img src="Images.contentType%>;base64,
+                            <%=juice.Images.data.toString('base64')%>" alt="<%= Name %>" class="card-product-image"/>
                             <h2 class="card-product-name"><%= Name %></h2>
                             <h4 class="card-product-price">&#x20bd; <%= Price %></h4>
                         </a>

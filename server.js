@@ -1,16 +1,19 @@
 // add dependences
 const express = require('express');
 const mongoose = require('mongoose');
+require('dotenv').config();
 const methodOverride = require('method-override');
 const productRouter = require('./routes/product-routes');
 const userRouter = require('./routes/user-routes');
 const mainsRouter = require('./routes/main-routes');
+const adminRouter = require('./routes/admin-routes');
 const createPath = require('./helpers/create-path');
+var bodyParser = require( 'body-parser' );
 
 // create express app
 const app = express();
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // set listening port
 app.listen(PORT, (error) => {
@@ -21,7 +24,7 @@ app.listen(PORT, (error) => {
 app.set('view engine', 'ejs');
 
 mongoose
-    .connect('mongodb://localhost:27017/course', { useNewUrlParser: true, useUnifiedTopology: true })
+    .connect(process.env.DB, { useNewUrlParser: true, useUnifiedTopology: true })
     .then((res) => console.log('Connect successfull'))
     .catch((error) => console.log(error))
 
@@ -29,11 +32,13 @@ mongoose
 app.use(express.static('css'));
 app.use(express.static('icons'));
 app.use(express.static('js'));
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 app.use(methodOverride('_method'));
 app.use(mainsRouter)
 app.use(productRouter); 
 app.use(userRouter);
+app.use(adminRouter);
 
 // set error 
 app.use((req, res) => {

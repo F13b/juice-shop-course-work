@@ -17,6 +17,10 @@ const JuiceShema = new Schema({
     Count: {
         type: String,
         required: true
+    }, 
+    Images: {
+        data: Buffer,
+        contentType: String  
     }
 }); 
 

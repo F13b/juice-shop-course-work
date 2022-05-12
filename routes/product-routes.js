@@ -6,6 +6,7 @@ const { getProductsForShop, getProductFromShop,
 
 const createPath = require('../helpers/create-path');
 const authMiddleware = require('../middleware/authMiddleware')
+const upload = require('../middleware/uploadImages')
 
 router.get('/add-product', (req, res) => {
     res.render(createPath('add-product'));
@@ -19,10 +20,10 @@ router.get('/all-products',  getProductsForManager);
 
 router.get('/edit/:id',  getProductForEdit);
 
-router.post('/add-product', addProduct);
+router.post('/add-product', upload.single( 'Image' ), addProduct);
 
 router.put('/edit/:id', updateProduct);
 
 router.delete('/all-products/:id', deleteProduct);
-
+ 
 module.exports = router;

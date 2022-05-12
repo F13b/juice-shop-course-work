@@ -16,7 +16,8 @@
     <div class="content">
         <div class="product-container">
             <div class="product-image-container">
-                <img src="/tiger-milk.svg" alt="<%= juice.Name %>" class="product-image"/>
+                <img src="data:<%=juice.Images.contentType%>;base64,
+                <%=juice.Images.data.toString('base64')%>" alt="<%= juice.Name %>" class="product-image"/>
             </div>
             <div class="product-info-container">
                 <div class="main-product-information">

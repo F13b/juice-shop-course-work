@@ -1,0 +1,59 @@
+html, body {
+    font-family: 'Ubuntu', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.link {
+    text-decoration: none;
+    color: #000;
+    outline: none;
+}
+
+body::-webkit-scrollbar {
+    width: 7px;
+    padding: 20px 0;
+}
+
+body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: rgba(207, 199, 199, 0.9);
+    border-radius: 3px;
+} 
+
+/* Content */
+
+.error-text {
+    text-align: center;
+}
+
+.main-error-text {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 150%;
+    letter-spacing: 0.0275em;
+    color: #121212;
+    margin: 0 auto;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.error-middle-text {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 150%;
+    letter-spacing: 0.0275em;
+    color: #121212;
+    margin: 0 auto;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.selfie-banner {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}

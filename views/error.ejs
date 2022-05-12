@@ -4,9 +4,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="images/png" href="/leaf-icon.png"/>
+    <link rel="stylesheet" href="/error.css">
+    <link rel="stylesheet" href="/header.css">
     <title>Oops...</title>
 </head>
 <body>
-    Что-то пошло не так, похоже сервер умер...
+    <header class="header">
+        <div class="logo-activities">
+            <div class="logo">
+                <a href="/main" class="home-link link">
+                    <img src="/logo.svg" alt="logotype" class="logo-img">
+                </a>
+            </div>
+            <div class="activities">
+                <ul class="activities-list">
+                    <li class="acivities-item"><a href="/shop" class="acivities-item-link link">Shop</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="content">
+        <div class="error-text">
+            <h1 class="error-main-text">Uh, it looks like there's something wrong with the server...</h1>
+            <p class="error-middle-text">We'll fix everything soon, but in the meantime, take some cool selfies (✿◠‿◠)</p>
+        </div>
+        <div class="selfie-banner">
+            <canvas class="rive-selfie" id="canvas" width="500" height="500"></canvas>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/@rive-app/canvas@1.0.47"></script>
+    <script>
+        new rive.Rive({
+            src: "/1812-3571-selfie-time.riv",
+            // Or the path to a local Rive asset
+            // src: './example.riv',
+            canvas: document.getElementById("canvas"),
+            autoplay: true
+        });
+    </script>
 </body>
 </html>

@@ -1,5 +1,7 @@
 const Juice = require('../models/Juice');
 const createPath = require('../helpers/create-path');
+var fs = require( 'fs' );
+const path = require('path'); 
 
 const getProductsForShop = (req, res) => {
     Juice
@@ -12,7 +14,7 @@ const getProductsForShop = (req, res) => {
 
 const getProductFromShop = (req, res) => {
     Juice
-    .findById(req.params.id)
+    .findById(req.params.id) 
     .then((juice) =>{
         res.render(createPath('product'), {juice});
     })
@@ -38,9 +40,20 @@ const getProductForEdit = (req, res) => {
 }
 
 const addProduct = (req, res) => {
-    const {Name, Description, Price, Count} = req.body;
+    console.log(req.file)
 
-    const product = new Juice ({Name, Description, Price, Count});
+    let productCandidate = {
+        Name: req.body.Name,
+        Description: req.body.Description, 
+        Price: req.body.Price, 
+        Count: req.body.Count, 
+        Images: {
+            data: fs.readFileSync(path.join('C:/Users/pakon/Documents/juice-shop-course-work/uploads/' + req.file.filename)),
+            contentType: 'image/svg'
+        }
+    }
+
+    const product = new Juice (productCandidate);
     product
         .save()
         .then((result) => res.redirect('/shop'))
@@ -55,8 +68,8 @@ const updateProduct = (req, res) => {
     .then((result) =>{
         res.redirect('/all-products');
     })
-    .catch((error) => console.log(error));
-}
+    .catch((error) => console.log(error)); 
+} 
 
 const deleteProduct = (req, res) => {
     Juice

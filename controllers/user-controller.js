@@ -2,7 +2,17 @@ const User = require('../models/User');
 const Role = require('../models/Role')
 const bcrypt = require('bcrypt');
 const createPath = require('../helpers/create-path');
+const jwt = require('jsonwebtoken');
 const { secret } = require('../js/config');
+
+function createToken(id, role) {
+    const payload = {
+        id, 
+        role
+    }
+
+    return jwt.sign(payload, secret, {expiresIn: '2h'});
+}
 
 const Registrate = async (req, res) => {
     const {Name, Password, ConfirmPassword} = req.body;
@@ -40,6 +50,8 @@ const Authorize = async (req, res) => {
         try {
             const validPassword = await bcrypt.compare(Password, candidate.Password);
             if (validPassword) {
+                const token = createToken(candidate._id, candidate.Role);
+                // res.send(token)
             }
         } catch (error) {
             console.log(error);
