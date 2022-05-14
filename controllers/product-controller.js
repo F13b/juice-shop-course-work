@@ -49,7 +49,7 @@ const addProduct = (req, res) => {
         Count: req.body.Count, 
         Images: {
             data: fs.readFileSync(path.join('C:/Users/pakon/Documents/juice-shop-course-work/uploads/' + req.file.filename)),
-            contentType: 'image/svg'
+            contentType: ['image/jpg', 'image/jpeg']
         }
     }
 
@@ -61,10 +61,21 @@ const addProduct = (req, res) => {
 }
 
 const updateProduct = (req, res) => {
-    const {Name, Description, Price, Count} = req.body;
     const { id } = req.params;
+
+    let productCandidate = {
+        Name: req.body.Name,
+        Description: req.body.Description, 
+        Price: req.body.Price, 
+        Count: req.body.Count, 
+        Images: {
+            data: fs.readFileSync(path.join('C:/Users/pakon/Documents/juice-shop-course-work/uploads/' + req.file.filename)),
+            contentType: 'image/svg'
+        }
+    }
+
     Juice
-    .findByIdAndUpdate(id, {Name, Description, Price, Count})
+    .findByIdAndUpdate(id, productCandidate)
     .then((result) =>{
         res.redirect('/all-products');
     })

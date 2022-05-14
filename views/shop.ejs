@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/shop-page.css">
     <link rel="stylesheet" href="/header.css">
     <link rel="stylesheet" href="/footer.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="icon" type="images/png" href="/leaf-icon.png"/>
     <title>Shop</title>
 </head>
@@ -19,8 +20,8 @@
                 <% juice.forEach(({id, Name, Price, Images}) => { %>
                     <div class="product-card">
                         <a href="/shop/<%= id %>" class="card-product-link">
-                            <img src="Images.contentType%>;base64,
-                            <%=juice.Images.data.toString('base64')%>" alt="<%= Name %>" class="card-product-image"/>
+                            <img src="data:<%=Images.contentType%>;base64,
+                            <%=Images.data.toString('base64')%>" alt="<%= Name %>" class="card-product-image"/>
                             <h2 class="card-product-name"><%= Name %></h2>
                             <h4 class="card-product-price">&#x20bd; <%= Price %></h4>
                         </a>
@@ -34,5 +35,9 @@
     </div>
 
     <%- include('./partials/footer.ejs') %>
+    <script src="/wow.js"></script>
+    <script>
+        new WOW().init();
+    </script>
 </body>
 </html>

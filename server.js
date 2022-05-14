@@ -32,6 +32,7 @@ mongoose
 app.use(express.static('css'));
 app.use(express.static('icons'));
 app.use(express.static('js'));
+app.use(express.static('rive'));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(methodOverride('_method'));

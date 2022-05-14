@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/header.css">
     <link rel="icon" type="images/png" href="/leaf-icon.png"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <title>Add product</title>
 </head>
 <body>
@@ -32,7 +33,7 @@
             </div>
             <div class="product-attribute-container">
                 <label for="Image" class="product-attribute-label">Product photo (max 5 images) <span class="required">*</span></label>
-                <input type="file" name="Image" accept=".svg" class="product-attribute-field picture-input" placeholder="Product photo (max 5 images)" required>
+                <input type="file" name="Image" accept=".jpg, .jpeg" class="product-attribute-field picture-input" placeholder="Product photo (max 5 images)" required>
             </div>
             <div class="buttons-container">
                 <button type="submit" class="action-button-add btn">Add</button>
@@ -40,5 +41,9 @@
             </div>
         </form>
     </div>
+    <script src="/wow.js"></script>
+    <script>
+        new WOW().init();
+    </script>
 </body>
 </html>

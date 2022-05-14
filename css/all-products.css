@@ -76,6 +76,7 @@ body::-webkit-scrollbar-thumb {
 
 .card-product-link {
     text-decoration: none;
+    padding: 0 1rem;
 }
 
 .card-product-image {

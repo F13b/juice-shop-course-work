@@ -44,24 +44,24 @@ body::-webkit-scrollbar-thumb {
 .title {
     text-transform: uppercase;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 1.125rem;
     letter-spacing: 0.455em;
-    margin-bottom: 15px;
-    margin-top: 29px;
+    margin-bottom: 0.9375rem;
+    margin-top: 1.8125rem;
 }
 
 .ref-juice-desc {
-    font-size: 48px;
-    line-height: 57px;
+    font-size: 3rem;
+    line-height: 3.5625rem;
     margin: 0;
-    margin-bottom: 30px;
+    margin-bottom: 1.875rem;
 }
 
 .shop-link {
     background-color: hsl(103, 59%, 39%);
-    padding: 10px 40px;
+    padding: 0.625rem 2.5rem;
     color: #fff;
-    border-radius: 5px;
+    border-radius: 0.3125rem;
     outline: none;
     transition: all .4s ease;
 }
@@ -71,8 +71,8 @@ body::-webkit-scrollbar-thumb {
 }
 
 .main-juice {
-    width: 850px;
-    height: 900px;
+    width: 53.125rem;
+    height: 56.25rem;
 }
 
 .mini-leaf-1 {
@@ -91,29 +91,29 @@ body::-webkit-scrollbar-thumb {
     width: 50%;
     margin: 0 auto;
     color: #fff;
-    padding: 45px 0;
+    padding: 2.8125rem 0;
     z-index: 10;
     position: relative;
 }
 
 .about-juice-title {
-    font-size: 26px;
+    font-size: 1.625rem;
     font-weight: 500;
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;
     letter-spacing: 0.455em;
     text-transform: uppercase;
 }
 
 .about-juice-main-title {
-    margin-bottom: 30px;
+    margin-bottom: 1.875rem;
     margin-top: 0;
-    font-size: 54px;
+    font-size: 3.375rem;
 }
 
 .about-juice-main-text {
     margin: 0;
-    font-size: 30px;
-    line-height: 48px;
+    font-size: 1.875rem;
+    line-height: 3rem;
 }
 
 .fruit-image-1 {
@@ -148,28 +148,28 @@ body::-webkit-scrollbar-thumb {
 }
 
 .our-product {
-    margin-top: 100px;
+    margin-top: 6.25rem;
     text-align: center;
     position: relative;
 }
 
 .product-range {
     text-align: center;
-    font-size: 36px;
+    font-size: 2.25rem;
     margin: 0;
 }
 
 .product-cards-mini-block {
-    width: 250px;
+    width: 15.625rem;
     display: flex;
     width: 70%;
     margin: 0 auto;
     justify-content: space-between;
-    margin-top: 80px;
+    margin-top: 5rem;
 }
 
 .product-image {
-    width: 250px;
+    width: 15.625rem;
 }
 
 .product-name {
@@ -178,14 +178,14 @@ body::-webkit-scrollbar-thumb {
 }
 
 .shop-link-container {
-    margin-top: 100px;
-    margin-bottom: 150px;
+    margin-top: 6.25rem;
+    margin-bottom: 9.375rem;
 }
 
 .shop_link-2 {
-    padding: 10px 45px;
-    border: 1px solid #4A9E29;
-    border-radius: 5px;
+    padding: 0.625rem 2.8125rem;
+    border: 0.0625rem solid #4A9E29;
+    border-radius: 0.3125rem;
     color: #4A9E29;
 }
 
@@ -203,7 +203,7 @@ body::-webkit-scrollbar-thumb {
 
 .partners-block {
     background-color: #4A9E29;
-    padding: 40px 0;
+    padding: 2.5rem 0;
 }
 
 .partners-block-first {
@@ -218,4 +218,28 @@ body::-webkit-scrollbar-thumb {
     display: flex;
     justify-content: space-between;
     margin: 0 auto;
+}
+
+@media screen and (max-width: 1440px) {
+    html {
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    html {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    html {
+        font-size: 11px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    html {
+        font-size: 9px;
+    }
 }
