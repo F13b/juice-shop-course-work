@@ -39,25 +39,29 @@ const getProductForEdit = (req, res) => {
     .catch((error) => console.log(error));
 }
 
-const addProduct = (req, res) => {
-    console.log(req.file)
+const addProduct = async (req, res) => {
+    let candidate = await Juice.findOne({Name: req.body.Name});
 
-    let productCandidate = {
-        Name: req.body.Name,
-        Description: req.body.Description, 
-        Price: req.body.Price, 
-        Count: req.body.Count, 
-        Images: {
-            data: fs.readFileSync(path.join('C:/Users/pakon/Documents/juice-shop-course-work/uploads/' + req.file.filename)),
-            contentType: ['image/jpg', 'image/jpeg']
+    if (candidate) {
+        res.send('Товар уже есть на складе');
+    } else {
+        let productCandidate = {
+            Name: req.body.Name,
+            Description: req.body.Description, 
+            Price: req.body.Price, 
+            Count: req.body.Count, 
+            Images: {
+                data: fs.readFileSync(path.join('C:/Users/pakon/Documents/juice-shop-course-work/uploads/' + req.file.filename)),
+                contentType: 'image/jpg'
+            }
         }
-    }
 
-    const product = new Juice (productCandidate);
-    product
-        .save()
-        .then((result) => res.redirect('/shop'))
-        .catch((error) => console.log(error));
+        const product = new Juice (productCandidate);
+        product
+            .save()
+            .then((result) => res.redirect('/shop'))
+            .catch((error) => console.log(error));
+    }
 }
 
 const updateProduct = (req, res) => {
@@ -70,7 +74,7 @@ const updateProduct = (req, res) => {
         Count: req.body.Count, 
         Images: {
             data: fs.readFileSync(path.join('C:/Users/pakon/Documents/juice-shop-course-work/uploads/' + req.file.filename)),
-            contentType: 'image/svg'
+            contentType: 'image/svg' 
         }
     }
 

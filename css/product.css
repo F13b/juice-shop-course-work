@@ -47,6 +47,8 @@ body::-webkit-scrollbar-thumb {
     width: 800px;
     height: 800px;
     margin-right: 1.5rem;
+    z-index: 10;
+    position: relative;
 }
 
 .product-name {
@@ -120,46 +122,54 @@ body::-webkit-scrollbar-thumb {
     top: 20%;
     left: 10%;
     position: absolute;
+    z-index: 1;
 }
 
 .little-pineapple-1 {
     bottom: 5%;
     right: 15%;
     position: absolute;
+    z-index: 1;
 }
 
 .little-orange-2 {
     top: 50%;
     left: 45%;
     position: absolute;
+    z-index: 1;
 }
 
 .little-pineapple-2 {
     bottom: 20%;
     right: 45%;
     position: absolute;
+    z-index: 1;
 }
 
 .little-orange-3 {
     top: 20%;
     left: 85%;
     position: absolute;
+    z-index: 1;
 }
 
 .little-pineapple-3 {
     bottom: 45%;
     right: 25%;
     position: absolute;
+    z-index: 1;
 }
 
 .little-orange-4 {
     top: 65%;
     left: 85%;
     position: absolute;
+    z-index: 1;
 }
 
 .little-pineapple-4 {
     bottom: 30%;
     right: 85%;
     position: absolute;
+    z-index: 1;
 }
