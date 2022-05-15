@@ -105,6 +105,12 @@ body::-webkit-scrollbar-thumb {
     color: #4A9E29;
     padding: 8px 12px;
     cursor: pointer;
+    transition: all .4s ease;
+}
+
+.card-product-add-to-card:hover {
+    background-color: rgba(74, 158, 41, .3);
+    color: #fff;
 }
 
 .no-products {
