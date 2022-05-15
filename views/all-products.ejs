@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="/all-products.css">
     <link rel="stylesheet" href="/header.css">
     <link rel="stylesheet" href="/footer.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="icon" type="images/png" href="/leaf-icon.png"/>
     <title>Products</title>
 </head>
@@ -59,10 +58,6 @@
                 fetch(`/all-products/${id}`, { method: 'DELETE', }).then(() => window.location.reload())
             }
         })
-    </script>
-    <script src="/wow.js"></script>
-    <script>
-        new WOW().init();
     </script>
 </body>
 </html>
