@@ -21,30 +21,73 @@
     </header>
 
     <div class="content">
-
-
-
-        <!-- <% if (users.length) {%>
-            <% users.forEach(({id, Name, Role}) => { %>
-                <div class="user-card">
-                    <div class="user-info-block">
-                        <a href="/user/<%= id %>" class="user-info-link">
-                            <div class="user-card-text-block">
-                                <h2 class="card-product-name"><%= Name %></h2>
-                                <h4 class="card-product-price"><%= Role %></h4>
-                            </div>
-                        </a> 
-                    </div>
-                    <div class="user-card-actions-block">
-                        <button class="user-delete" type="button" data-id="<%= id %>">
-                            <svg class="user-delete-icon" data-id="<%= id %>" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 172 172">
-                                <path d="M74.53333,17.2c-1.53406,-0.02082 -3.01249,0.574 -4.10468,1.65146c-1.09219,1.07746 -1.70703,2.54767 -1.70704,4.08187h-34.32161c-2.06765,-0.02924 -3.99087,1.05709 -5.03322,2.843c-1.04236,1.78592 -1.04236,3.99474 0,5.78066c1.04236,1.78592 2.96558,2.87225 5.03322,2.843h103.2c2.06765,0.02924 3.99087,-1.05709 5.03322,-2.843c1.04236,-1.78592 1.04236,-3.99474 0,-5.78066c-1.04236,-1.78592 -2.96558,-2.87225 -5.03322,-2.843h-34.32161c-0.00001,-1.53421 -0.61486,-3.00442 -1.70704,-4.08187c-1.09219,-1.07746 -2.57061,-1.67228 -4.10468,-1.65146zM34.4,45.86667v91.73333c0,6.33533 5.13133,11.46667 11.46667,11.46667h80.26667c6.33533,0 11.46667,-5.13133 11.46667,-11.46667v-91.73333z"></path>
-                            </svg>
-                        </button>
-                    </div>
+        <div class="admin-actions-container">
+            <a href="/admins-panel/add-user" class="add-user-action">Add new user</a>
+        </div>      
+        <div class="users-container">
+            <div class="managers-container">
+                <h3 class="manager-container-title">Managers</h3>
+                <div class="user-cards-container">
+                    <% if (users.length) { %>
+                        <% users.forEach(({id, Name, Role}) => { %>
+                            <% if (Role == 'Manager') { %>
+                                <div class="user-card">
+                                    <div class="user-info-block">
+                                        <div class="user-card-text-block">
+                                            <h3 class="card-user-name">Login: <%= Name %></h3>
+                                            <h4 class="card-user-role">Role: <%= Role %></h4>
+                                            <h4 class="card-user-id">ID: <%= id %></h4>
+                                        </div>
+                                        <div class="user-actions-block">
+                                            <button class="product-delete" type="button" data-id="<%= id %>">
+                                                <svg class="product-delete-icon" data-id="<%= id %>" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 172 172">
+                                                    <path d="M74.53333,17.2c-1.53406,-0.02082 -3.01249,0.574 -4.10468,1.65146c-1.09219,1.07746 -1.70703,2.54767 -1.70704,4.08187h-34.32161c-2.06765,-0.02924 -3.99087,1.05709 -5.03322,2.843c-1.04236,1.78592 -1.04236,3.99474 0,5.78066c1.04236,1.78592 2.96558,2.87225 5.03322,2.843h103.2c2.06765,0.02924 3.99087,-1.05709 5.03322,-2.843c1.04236,-1.78592 1.04236,-3.99474 0,-5.78066c-1.04236,-1.78592 -2.96558,-2.87225 -5.03322,-2.843h-34.32161c-0.00001,-1.53421 -0.61486,-3.00442 -1.70704,-4.08187c-1.09219,-1.07746 -2.57061,-1.67228 -4.10468,-1.65146zM34.4,45.86667v91.73333c0,6.33533 5.13133,11.46667 11.46667,11.46667h80.26667c6.33533,0 11.46667,-5.13133 11.46667,-11.46667v-91.73333z"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% } %>
+                        <% }); %>
+                    <% } %>
                 </div>
-            <% }) %>
-        <% } %> -->
+            </div>
+            <div class="common-users-container">
+                <h3 class="common-users-container-title">Users</h3>
+                <div class="user-cards-container">
+                    <% if (users.length) { %>
+                        <% users.forEach(({id, Name, Role}) => { %>
+                            <% if (Role == 'User') { %>
+                                <div class="user-card">
+                                    <div class="user-info-block">
+                                        <div class="user-card-text-block">
+                                            <h3 class="card-user-name">Login: <%= Name %></h3>
+                                            <h4 class="card-user-role">Role: <%= Role %></h4>
+                                            <h4 class="card-user-id">ID: <%= id %></h4>
+                                        </div>
+                                        <div class="user-actions-block">
+                                            <button class="product-delete" type="button" data-id="<%= id %>">
+                                                <svg class="product-delete-icon" data-id="<%= id %>" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30" viewBox="0 0 172 172">
+                                                    <path d="M74.53333,17.2c-1.53406,-0.02082 -3.01249,0.574 -4.10468,1.65146c-1.09219,1.07746 -1.70703,2.54767 -1.70704,4.08187h-34.32161c-2.06765,-0.02924 -3.99087,1.05709 -5.03322,2.843c-1.04236,1.78592 -1.04236,3.99474 0,5.78066c1.04236,1.78592 2.96558,2.87225 5.03322,2.843h103.2c2.06765,0.02924 3.99087,-1.05709 5.03322,-2.843c1.04236,-1.78592 1.04236,-3.99474 0,-5.78066c-1.04236,-1.78592 -2.96558,-2.87225 -5.03322,-2.843h-34.32161c-0.00001,-1.53421 -0.61486,-3.00442 -1.70704,-4.08187c-1.09219,-1.07746 -2.57061,-1.67228 -4.10468,-1.65146zM34.4,45.86667v91.73333c0,6.33533 5.13133,11.46667 11.46667,11.46667h80.26667c6.33533,0 11.46667,-5.13133 11.46667,-11.46667v-91.73333z"></path>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            <% } %>
+                        <% }); %>
+                    <% } %>
+                </div>
+            </div>
+        </div>
     </div>
+    <script>
+        document.addEventListener('click', (e) => {
+            const id = e.target?.dataset?.id || null;
+            if (id) {
+                fetch(`/admins-panel/${id}`, { method: 'DELETE', }).then(() => window.location.reload())
+            }
+        })
+    </script>
 </body>
 </html>

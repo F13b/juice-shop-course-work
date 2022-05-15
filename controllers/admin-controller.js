@@ -15,7 +15,7 @@ const deleteUser = (req, res) => {
     User
     .findByIdAndDelete(req.params.id)
     .then((result) =>{
-        res.sendStatus(200).redirect('/admins-panel');
+        res.sendStatus(200).redirect('/shop');
     })
     .catch((error) => console.log(error));
 }
@@ -36,9 +36,7 @@ const addUser = async (req, res) => {
         if (Password == ConfirmPassword) {
             try {
                 const Salt = await bcrypt.genSalt();
-                const HashedPassword = await bcrypt.hash(Password, Salt);
-
-                
+                const HashedPassword = await bcrypt.hash(Password, Salt);                
                 new User({Name, Password: HashedPassword, Role: UserRole}).save().then(res.redirect('/admins-panel')).catch((error) => console.log(error));
             } catch (error) {
                 console.log(error);

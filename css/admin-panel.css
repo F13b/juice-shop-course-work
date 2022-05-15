@@ -26,3 +26,93 @@ body::-webkit-scrollbar-thumb {
 
 /* Main Content */
 
+.admin-actions-container {
+    width: 85%;
+    margin: 0 auto;
+}
+
+.add-user-action {
+    text-decoration: none;
+    padding: .5rem 1rem;
+    background-color: hsl(103, 59%, 39%);
+    color: #fff;
+    border-radius: 0.3125rem;
+    transition: all .4s ease;
+    text-transform: capitalize;
+}
+
+.add-user-action:hover {
+    background-color: hsl(103, 60%, 35%);
+}
+
+.users-container {
+    width: 85%;
+    margin: 0 auto;
+    text-transform: capitalize;
+}
+
+.user-cards-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.managers-container {
+    padding: .7rem;
+    border-radius: .3125rem;
+    margin-top: 1.5rem;
+}
+
+.manager-container-title {
+    margin: .5rem 0;
+}
+
+.common-users-container {
+    padding: .7rem;
+    border-radius: .3125rem;
+    margin-top: 1.5rem;
+}
+
+.common-users-container-title {
+    margin: .5rem 0;
+}
+
+.user-card {
+    width: 15%;
+    padding: 1rem;
+    transition: all .4s ease;
+}
+
+.user-card:hover {
+    box-shadow: 0rem .125rem .25rem rgba(59, 69, 123, 0.2), 0rem .25rem .5rem rgba(92, 107, 192, 0.2);
+    border-radius: .5rem;
+}
+
+.user-actions-block {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.product-delete {
+    appearance: none;
+    border: .0625rem solid transparent;
+    background-color: transparent;
+}
+
+svg path {
+    fill:inherit;
+    stroke:inherit;
+    stroke-width:inherit;
+}
+
+.product-delete-icon {
+    transition: all .4s ease;
+    padding: .3125rem .5rem;
+    cursor: pointer;
+}
+
+.product-delete-icon:hover {
+    fill: red;
+    background-color: lightgrey;
+    border-radius: .25rem;
+}
