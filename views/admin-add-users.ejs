@@ -1,44 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="/admin-add-users.css">
-    <link rel="icon" type="images/png" href="/leaf-icon.png"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/admin-add-users.css">
+    <link rel="stylesheet" href="/header.css">
+    <link rel="icon" type="images/png" href="/leaf-icon.png"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Add user</title>
 </head>
 <body>
+    <header class="header">
+        <div class="logo-activities">
+            <div class="logo">
+                <a href="/main" class="home-link link">
+                    <img src="/logo.svg" alt="logotype" class="logo-img">
+                </a>
+            </div>
+        </div>
+    </header>
     <div class="content">
         <div class="title-block">
             <h1 class="title-text">Adding new user</h1>
         </div>
-        <form action="/admins-panel/add-user" class="add-user-form" method="post">
-            <div class="user-attribute-container">
-                <label class="user-attribute-label" for="Name">Login <span class="required">*</span></label>
-                <input type="text" class="user-attribute-field" name="Name" required>
-            </div>
-            <div class="user-attribute-container">
-                <label class="user-attribute-label" for="Password">Password <span class="required">*</span></label>
-                <input type="password" class="user-attribute-field" name="Password" required>
-            </div>
-            <div class="user-attribute-container">
-                <label class="user-attribute-label" for="ConfirmPassword">Confirm Password <span class="required">*</span></label>
-                <input type="password" class="user-attribute-field" name="ConfirmPassword" required>
-            </div>
-            <div class="user-attribute-container">
-                <h3 class="user-attribute-container-text">Choose user role <span class="required">*</span></h3>
-                <input type="radio" class="user-attribute-field" name="UserRole" required value="Manager">
-                <label class="user-attribute-label" for="UserRoleManager">Manager</label>
-                <input type="radio" class="user-attribute-field" name="UserRole" required value="User">
-                <label class="user-attribute-label" for="UserRoleUser">User</label>
-            </div>
-            <div class="buttons-container">
-                <button type="submit" class="action-button-reg">Add</button>
-                <a href="/admins-panel" class="action-button-auth">Cancel</a>
-            </div>
-        </form>
+        <div class="form-container">
+            <form action="/admins-panel/add-user" class="add-user-form" method="post">
+                <div class="user-attribute-container">
+                    <label class="user-attribute-label" for="Name">Login <span class="required">*</span></label>
+                    <input type="text" class="user-attribute-field" name="Name" required>
+                </div>
+                <div class="user-attribute-container">
+                    <label class="user-attribute-label" for="Password">Password <span class="required">*</span></label>
+                    <input type="password" class="user-attribute-field" name="Password" required>
+                </div>
+                <div class="user-attribute-container">
+                    <label class="user-attribute-label" for="ConfirmPassword">Confirm Password <span class="required">*</span></label>
+                    <input type="password" class="user-attribute-field" name="ConfirmPassword" required>
+                </div>
+                <div class="user-attribute-container">
+                    <p class="user-attribute-container-text">Choose user role <span class="required">*</span></p>
+                    <div class="radio-btn-container">
+                        <input type="radio" class="radio" name="UserRole" required value="Manager">
+                        <label class="user-attribute-label radio-label" for="UserRoleManager">Manager</label>
+                    </div>
+                    <div class="radio-btn-container">
+                        <input type="radio" class="radio" name="UserRole" required value="User">
+                        <label class="user-attribute-label radio-label" for="UserRoleUser">User</label>
+                    </div>
+                </div>
+                <div class="buttons-container">
+                    <button type="submit" class="action-button-add">Add</button>
+                    <a href="/admins-panel" class="action-button-cancel">Cancel</a>
+                </div>
+            </form>
+        </div>
     </div>
 </body>
 </html>
