@@ -116,3 +116,14 @@ svg path {
     background-color: lightgrey;
     border-radius: .25rem;
 }
+
+.message-container {
+    background-color: greenyellow;
+    color: green;
+    transition: all .5s ease;
+}
+
+.hide {
+    opacity: 0;
+    display: none;
+}

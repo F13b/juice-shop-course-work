@@ -7,6 +7,7 @@
     <link rel="icon" type="images/png" href="/leaf-icon.png"/>
     <link rel="stylesheet" href="/admin-panel.css">
     <link rel="stylesheet" href="/header.css">
+    <script src="/hideMessage.js" defer></script>
     <title>Control Panel</title>
 </head>
 <body>
@@ -20,6 +21,13 @@
         </div>
     </header>
     <div class="content">
+        <% if (message) { %>
+            <div class="message-container">
+                <p class="message">
+                    <%= message %>
+                </p>
+            </div>
+        <% } %>
         <div class="admin-actions-container">
             <a href="/admins-panel/add-user" class="add-user-action">Add new user</a>
         </div>      

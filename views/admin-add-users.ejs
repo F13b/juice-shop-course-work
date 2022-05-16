@@ -29,6 +29,13 @@
                 <div class="user-attribute-container">
                     <label class="user-attribute-label" for="Name">Login <span class="required">*</span></label>
                     <input type="text" class="user-attribute-field" name="Name" required>
+                    <% if (message != '' && message == 'A user with this username is already in the system!') { %>
+                        <div class="message-error-container">
+                            <p class="message-error">
+                                <%= message %>
+                            </p>
+                        </div>
+                    <% } %>
                 </div>
                 <div class="user-attribute-container">
                     <label class="user-attribute-label" for="Password">Password <span class="required">*</span></label>
@@ -37,6 +44,13 @@
                 <div class="user-attribute-container">
                     <label class="user-attribute-label" for="ConfirmPassword">Confirm Password <span class="required">*</span></label>
                     <input type="password" class="user-attribute-field" name="ConfirmPassword" required>
+                    <% if (message != '' && message == "Passwords don't match!") { %>
+                        <div class="message-error-container">
+                            <p class="message-error">
+                                <%= message %>
+                            </p>
+                        </div>
+                    <% } %>
                 </div>
                 <div class="user-attribute-container">
                     <p class="user-attribute-container-text">Choose user role <span class="required">*</span></p>
