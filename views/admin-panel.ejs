@@ -92,7 +92,7 @@
         document.addEventListener('click', (e) => {
             const id = e.target?.dataset?.id || null;
             if (id) {
-                fetch(`/admins-panel/${id}`, { method: 'DELETE', }).then(() => window.location.reload())
+                fetch(`/admins-panel/${id}`, { method: 'DELETE' }).then(() => window.location.reload)
             }
         })
     </script>

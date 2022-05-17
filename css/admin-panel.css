@@ -26,7 +26,7 @@ body::-webkit-scrollbar-thumb {
 
 /* Main Content */
 
-.admin-actions-container {
+.content {
     width: 85%;
     margin: 0 auto;
 }
@@ -46,8 +46,6 @@ body::-webkit-scrollbar-thumb {
 }
 
 .users-container {
-    width: 85%;
-    margin: 0 auto;
     text-transform: capitalize;
 }
 
@@ -118,12 +116,25 @@ svg path {
 }
 
 .message-container {
-    background-color: greenyellow;
-    color: green;
+    width: 5%;
+    border: 1px solid #28aa3a;
+    background-color: rgba(53, 200, 73, .3);
+    color: #28aa3a;
     transition: all .5s ease;
+    padding: .6rem;
+    border-radius: .3125rem;
+    margin: 1rem 0;
 }
 
-.hide {
+.visualHide {
     opacity: 0;
+}
+
+.phisicHide {
     display: none;
+}
+
+.message {
+    margin: 0;
+    text-align: center;
 }

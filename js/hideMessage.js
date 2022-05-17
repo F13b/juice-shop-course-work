@@ -1,7 +1,10 @@
-function hide() {
+setTimeout(() => {
     const message = document.querySelector('.message-container');
     
-    message.classList.add('hide');
-}
+    message.classList.toggle('visualHide');
 
-setTimeout(hide, 5000);
+    setTimeout(() => {
+        message.classList.toggle('phisicHide')
+    },200);
+
+}, 3000);
