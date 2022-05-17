@@ -16,7 +16,7 @@
     <div class="content">
         <div class="container">
             <div class="add-product-button-container">
-                <a class="add-product-button" href="/add-product">
+                <a class="add-product-button" href="/managers-panel/add-product">
                     <p class="add-product-button-text">&#43;</p>
                 </a>
             </div>
@@ -24,12 +24,12 @@
                 <% if (juice.length) {%>
                     <% juice.forEach(({id, Name, Price, Description, Images}) => { %>
                         <div class="product-card">
-                            <a href="/edit/<%= id %>" class="card-product-link">
+                            <a href="/managers-panel/edit/<%= id %>" class="card-product-link">
                                 <img src="data:<%=Images.contentType%>;base64,
                                 <%=Images.data.toString('base64')%>" alt="<%= Name %>" class="card-product-image"/>
                             </a> 
                             <div class="product-card-propeties-container">
-                                <a href="/edit/<%= id %>" class="card-product-link">
+                                <a href="/managers-panel/edit/<%= id %>" class="card-product-link">
                                     <div class="product-card-text-container">
                                         <h2 class="card-product-name"><%= Name %></h2>
                                         <h4 class="card-product-price">&#x20bd; <%= Price %></h4>
@@ -55,7 +55,7 @@
         document.addEventListener('click', (e) => {
             const id = e.target?.dataset?.id || null;
             if (id) {
-                fetch(`/all-products/${id}`, { method: 'DELETE', }).then(() => window.location.reload())
+                fetch(`/managers-panel/all-products/${id}`, { method: 'DELETE', }).then(() => window.location.reload())
             }
         })
     </script>

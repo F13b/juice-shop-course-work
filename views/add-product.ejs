@@ -8,15 +8,23 @@
     <link rel="stylesheet" href="/header.css">
     <link rel="icon" type="images/png" href="/leaf-icon.png"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/hideMessage.js"></script>
     <title>Add product</title>
 </head>
 <body>
     <%- include('./partials/header.ejs') %>
     <div class="form-container">
-        <form action="/add-product" class="add-product-form" method="post" enctype = "multipart/form-data">
+        <form action="/managers-panel/add-product" class="add-product-form" method="post" enctype = "multipart/form-data">
             <div class="product-attribute-container">
                 <label for="Name" class="product-attribute-label">Product Name <span class="required">*</span></label>
                 <input type="text" name="Name" class="product-attribute-field name-field" placeholder="Product Name" required>
+                <% if (message != '' && message == "Passwords don't match!") { %>
+                    <div class="message-container error">
+                        <p class="message">
+                            <%= message %>
+                        </p>
+                    </div>
+                <% } %>
             </div>
             <div class="product-attribute-container">
                 <label for="Description" class="product-attribute-label">Product Description <span class="required">*</span></label>
@@ -36,7 +44,7 @@
             </div>
             <div class="buttons-container">
                 <button type="submit" class="action-button-add btn">Add</button>
-                <a href="/all-products" class="action-button-decline btn">Cancel</a>
+                <a href="/managers-panel/all-products" class="action-button-decline btn">Cancel</a>
             </div>
         </form>
     </div>

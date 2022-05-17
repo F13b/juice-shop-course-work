@@ -12,10 +12,17 @@
 <body>
     <%- include('./partials/header.ejs') %>
     <div class="form-container">
-        <form action="/edit/<%= juice.id %>?_method=PUT" class="add-product-form" method="post">
+        <form action="/managers-panel/edit/<%= juice.id %>?_method=PUT" class="add-product-form" method="post" enctype = "multipart/form-data">
             <div class="product-attribute-container">
                 <label for="Name" class="product-attribute-label">Product Name <span class="required">*</span></label>
                 <input type="text" name="Name" class="product-attribute-field" placeholder="Product Name" value="<%= juice.Name %>">
+                <% if (message != '' && message == "Passwords don't match!") { %>
+                    <div class="message-container error">
+                        <p class="message">
+                            <%= message %>
+                        </p>
+                    </div>
+                <% } %>
             </div>
             <div class="product-attribute-container">
                 <label for="Name" class="product-attribute-label">Product Description <span class="required">*</span></label>
@@ -26,15 +33,14 @@
                 <input type="number" min="0" value="<%= juice.Price %>" name="Price" class="product-attribute-field" placeholder="Product Price (Per Unit)">
             </div>
             <div class="product-attribute-container">
-                <label for="Name" class="product-attribute-label">Product photo (max 5 images) <span class="required">*</span></label>
-                <input type="file" name="Picture" class="product-attribute-field picture-input" placeholder="Product photo (max 5 images)">
+                <label for="Image" class="product-attribute-label">Product photo (max 5 images) <span class="required">*</span></label>
+                <input type="file" name="Image" accept=".jpg" class="product-attribute-field picture-input" placeholder="Product photo (max 5 images)" required>
             </div>
             <div class="buttons-container">
                 <button type="submit" class="action-button-add btn">Edit</button>
-                <a href="/all-products" class="action-button-decline btn">Cancel</a>
+                <a href="/managers-panel/all-products" class="action-button-decline btn">Cancel</a>
             </div>
         </form>
     </div>
-    <script src="/wow.js"></script>
 </body>
 </html>

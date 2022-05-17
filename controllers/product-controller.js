@@ -34,7 +34,7 @@ const getProductForEdit = (req, res) => {
     Juice
     .findById(req.params.id)
     .then((juice) =>{
-        res.render(createPath('edit-product'), {juice});
+        res.render(createPath('edit-product'), {juice, message: ''});
     })
     .catch((error) => console.log(error));
 }
@@ -43,7 +43,7 @@ const addProduct = async (req, res) => {
     let candidate = await Juice.findOne({Name: req.body.Name});
 
     if (candidate) {
-        res.send('Товар уже есть на складе');
+        res.render(createPath('add-product'), { message: 'The product with this name is already in stock!' });
     } else {
         let productCandidate = {
             Name: req.body.Name,
@@ -74,14 +74,14 @@ const updateProduct = (req, res) => {
         Count: req.body.Count, 
         Images: {
             data: fs.readFileSync(path.join('C:/Users/pakon/Documents/juice-shop-course-work/uploads/' + req.file.filename)),
-            contentType: 'image/svg' 
+            contentType: 'image/jpg' 
         }
     }
 
     Juice
     .findByIdAndUpdate(id, productCandidate)
     .then((result) =>{
-        res.redirect('/all-products');
+        res.redirect('/managers-panel/all-products');
     })
     .catch((error) => console.log(error)); 
 } 

@@ -131,3 +131,27 @@ input, label {
 .action-button-decline:hover {
     background-color: hsl(0, 100%, 40%);
 }
+
+.visualHide {
+    opacity: 0;
+}
+
+.phisicHide {
+    display: none;
+}
+
+.message {
+    margin: 0;
+    text-align: center;
+}
+
+.error {
+    width: 20%;
+    border: 1px solid #c52b2b;
+    background-color: rgba(201, 52, 52, .3);
+    color: #c52b2b;
+    transition: all .5s ease;
+    padding: .6rem;
+    border-radius: .3125rem;
+    margin: 1rem 0;
+}
