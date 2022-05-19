@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/signin-up.css">
     <link rel="stylesheet" href="/header.css">
     <link rel="icon" type="images/png" href="/leaf-icon.png"/>
+    <script src="/hideMessage.js" defer></script>
     <title>Sign up</title>
 </head>
 <body>
@@ -24,11 +25,25 @@
             </div>
         </div>
     </header>
+    <% if (message != '' && message == "Oops, something went wrong...") { %>
+        <div class="message-container error">
+            <p class="message">
+                <%= message %>
+            </p>
+        </div>
+    <% } %>
     <div class="form-container">
-        <form action="/registration" class="add-user-form" method="post">
+        <form action="/signup" class="add-user-form" method="post">
             <div class="user-attribute-container">
                 <label class="user-attribute-label" for="Name">Login <span class="required">*</span></label>
                 <input type="text" class="user-attribute-field" name="Name" required>
+                <% if (message != '' && message == "This login is already occupied (´。＿。｀)") { %>
+                    <div class="message-container error">
+                        <p class="message">
+                            <%= message %>
+                        </p>
+                    </div>
+                <% } %>
             </div>
             <div class="user-attribute-container">
                 <label class="user-attribute-label" for="Password">Password <span class="required">*</span></label>
@@ -37,6 +52,13 @@
             <div class="user-attribute-container">
                 <label class="user-attribute-label" for="ConfirmPassword">Confirm Password <span class="required">*</span></label>
                 <input type="password" class="user-attribute-field" name="ConfirmPassword" required>
+                <% if (message != '' && message == "Passwords don't match!") { %>
+                    <div class="message-container error">
+                        <p class="message">
+                            <%= message %>
+                        </p>
+                    </div>
+                <% } %>
             </div>
             <div class="buttons-container">
                 <button type="submit" class="action-button-reg">Sign up</button>

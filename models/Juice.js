@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const JuiceShema = new Schema({
+const JuiceSchema = new Schema({
     Name: {
         type: String,
         required: true
@@ -24,5 +24,5 @@ const JuiceShema = new Schema({
     }
 }); 
 
-const Juice = mongoose.model('Juice', JuiceShema);
+const Juice = mongoose.model('Juice', JuiceSchema);
 module.exports = Juice;

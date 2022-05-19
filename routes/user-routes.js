@@ -4,11 +4,11 @@ const { Registrate, Authorize } = require('../controllers/user-controller')
 const createPath = require('../helpers/create-path');
 
 router.get('/account', (req, res) => {
-    res.render(createPath('account'));
+    res.render(createPath('account'), { message: '' });
 });
 
 router.get('/signup', (req, res) => {
-    res.render(createPath('reg'));
+    res.render(createPath('reg'), { message: '' });
 });
 
 router.get('/reg', (req, res) => {
@@ -18,7 +18,7 @@ router.get('/reg', (req, res) => {
 router.post('/signup', Registrate);
 
 router.get('/signin', (req, res) => {
-    res.render(createPath('auth'));
+    res.render(createPath('auth'), { message: '' });
 });
 
 router.get('/auth', (req, res) => {

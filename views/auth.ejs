@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/signin-up.css">
     <link rel="stylesheet" href="/header.css">
     <link rel="icon" type="images/png" href="/leaf-icon.png"/>
+    <script src="/hideMessage.js" defer></script>
     <title>Sign In</title>
 </head>
 <body>
@@ -24,6 +25,13 @@
             </div>
         </div>
     </header>
+    <% if (message != '' && message == "A user with this username was not found") { %>
+        <div class="message-container error">
+            <p class="message">
+                <%= message %>
+            </p>
+        </div>
+    <% } %>
     <div class="form-container">
         <form action="" class="add-user-form" method="post">
             <div class="user-attribute-container">
@@ -33,6 +41,13 @@
             <div class="user-attribute-container">
                 <label class="user-attribute-label" for="Password">Password <span class="required">*</span></label>
                 <input type="password" class="user-attribute-field" name="Password" required>
+                <% if (message != '' && message == "Incorrect login or password!") { %>
+                    <div class="message-container error">
+                        <p class="message">
+                            <%= message %>
+                        </p>
+                    </div>
+                <% } %>
             </div>
             <div class="buttons-container">
                 <button type="submit" class="action-button-reg">sign in</button>

@@ -1,4 +1,5 @@
 const Juice = require('../models/Juice');
+const Order = require('../models/Order');
 const createPath = require('../helpers/create-path');
 var fs = require( 'fs' );
 const path = require('path'); 
@@ -59,7 +60,7 @@ const addProduct = async (req, res) => {
         const product = new Juice (productCandidate);
         product
             .save()
-            .then((result) => res.redirect('/shop'))
+            .then((result) => res.redirect('/managers-panel/all-products'))
             .catch((error) => console.log(error));
     }
 }
@@ -93,6 +94,51 @@ const deleteProduct = (req, res) => {
         res.sendStatus(200).redirect('/shop');
     })
     .catch((error) => console.log(error));
+}
+
+const addToBasket = async (req, res) => {
+    const {user_id, product_id, count} = req.body;
+
+    let order = await Order.findOne({User: user_id});
+
+    if (!order) {
+        order = {
+            User: user_id,
+            Purchases: [
+                {
+                    Product: product_id,
+                    Count: count
+                }
+            ]
+        }
+
+        try {
+            await new Order(order).save().then((result) => res.redirect('/shop')).catch((error) => {console.log(error); res.status(400).redirect('/shop')})
+        } catch (e) {
+            console.log(error); 
+            res.status(400).redirect('/shop');
+        }        
+    } else {
+        const id = order.id;
+
+        order = {
+            User: user_id,
+            Purchases: [
+                {
+                    Product: product_id,
+                    Count: count
+                }
+            ]
+        }
+
+        try {
+            await Order.findByIdAndUpdate(id, order).then((result) => res.redirect('/shop')).catch((error) => {console.log(error); res.status(400).redirect('/shop')})
+        } catch (e) {
+            console.log(error); 
+            res.status(400).redirect('/shop');
+        }   
+    }
+    
 }
 
 module.exports = {

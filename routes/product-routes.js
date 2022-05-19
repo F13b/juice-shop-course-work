@@ -12,6 +12,10 @@ router.get('/managers-panel/add-product', (req, res) => {
     res.render(createPath('add-product'), { message: '' });
 });
 
+router.get('/managers-panel', (req, res) => {
+    res.redirect('/managers-panel/add-product');
+});
+
 router.get('/shop', getProductsForShop);
 
 router.get('/shop/:id', getProductFromShop);

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/shop-page.css">
     <link rel="stylesheet" href="/header.css">
     <link rel="stylesheet" href="/footer.css">
-    <link rel="icon" type="images/png" href="/leaf-icon.png"/>
+    <link rel="icon" type="images/png" href="/logo.svg"/>
     <title>Shop</title>
 </head>
 <body>
@@ -24,15 +24,28 @@
                             <h2 class="card-product-name"><%= Name %></h2>
                             <h4 class="card-product-price">&#x20bd; <%= Price %></h4>
                         </a>
-                        <button type="button" class="card-product-add-to-card">Add to cart</button>
+                        <button type="button" class="card-product-add-to-card" data-id="<%= id %>">Add to cart</button>
                     </div>
                 <% }) %>
             <% } else { %>
-                <h1 class="no-products">Sorry, it looks like there are no products in the store right now... (˘･_･˘)</h1>
+                <div class="no-products-container">
+                    <h1 class="no-products">Sorry, it looks like there are no products in the store right now... (˘･_･˘)</h1>
+                    <div class="logistics-man">
+                        <canvas class="rive-logistic" id="canvas" width="500" height="500"></canvas>
+                    </div>
+                </div>
             <% } %>
         </div>
     </div>
 
     <%- include('./partials/footer.ejs') %>
+    <script src="https://unpkg.com/@rive-app/canvas@1.0.47"></script>
+    <script>
+        new rive.Rive({
+            src: "/1180-2271-logistics-man-boxes.riv",
+            canvas: document.getElementById("canvas"),
+            autoplay: true
+        });
+    </script>
 </body>
 </html>

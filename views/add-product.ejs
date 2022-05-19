@@ -18,7 +18,7 @@
             <div class="product-attribute-container">
                 <label for="Name" class="product-attribute-label">Product Name <span class="required">*</span></label>
                 <input type="text" name="Name" class="product-attribute-field name-field" placeholder="Product Name" required>
-                <% if (message != '' && message == "Passwords don't match!") { %>
+                <% if (message != '') { %>
                     <div class="message-container error">
                         <p class="message">
                             <%= message %>

@@ -28,13 +28,13 @@ const Registrate = async (req, res) => {
                 new User({Name, Password: HashedPassword, Role: 'User'}).save().then(res.redirect('/main')).catch((error) => console.log(error));
             } catch (error) {
                 console.log(error);
-                res.status(400).json('Oops....')
+                res.render(createPath('reg'), { message: "Oops, something went wrong..."} );
             }
         } else {
-            res.status(400).json('Wrong conf pass')
+            res.render(createPath('reg'), { message: "Passwords don't match!"} );
         }
     } else {
-        res.status(400).json('Go to home, bitch!')
+        res.render(createPath('reg'), { message: "This login is already occupied (´。＿。｀)"} );
     }
 }
 
@@ -44,13 +44,15 @@ const Authorize = async (req, res) => {
     const candidate = await User.findOne({Name})
 
     if (!candidate) {
-        res.status(400).json('Not found')
+        res.render(createPath('auth'), { message: "A user with this username was not found"} );
     } else {
         try {
             const validPassword = await bcrypt.compare(Password, candidate.Password);
             if (validPassword) {
                 const token = createToken(candidate._id, candidate.Role);
                 // res.send(token)
+            } else {
+                res.render(createPath('auth'), { message: "Incorrect login or password!"} );
             }
         } catch (error) {
             console.log(error);
