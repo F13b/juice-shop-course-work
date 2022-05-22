@@ -10,7 +10,31 @@
     <title>Edit product</title>
 </head>
 <body>
-    <%- include('./partials/header.ejs') %>
+    <header class="header">
+        <div class="logo-activities">
+            <div class="logo">
+                <a href="/main" class="home-link link">
+                    <img src="/logo.svg" alt="logotype" class="logo-img">
+                </a>
+            </div>
+            <div class="activities">
+                <ul class="activities-list">
+                    <li class="acivities-item"><a href="/shop" class="acivities-item-link link">Shop</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="acount-activities">
+            <a href="/error" class="cart-link link">
+                <div class="cart-block">
+                    <img src="/cart-logo.svg" alt="cart" class="cart-logo">
+                    <p class="cart-summ">0.00</p>
+                </div>
+            </a>
+            <div class="account-block">
+                <a href="/signin" class="account-link link">Sign in</a>
+            </div>
+        </div>
+    </header>
     <div class="form-container">
         <form action="/managers-panel/edit/<%= juice.id %>?_method=PUT" class="add-product-form" method="post" enctype = "multipart/form-data">
             <div class="product-attribute-container">
