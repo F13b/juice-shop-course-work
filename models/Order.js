@@ -9,7 +9,7 @@ const OrderSchema = new Schema({
     }, 
     Purchases: [ {
         Product: {
-            type: String,
+            type: String, 
             required: true,
             ref: 'Juice'
         },
