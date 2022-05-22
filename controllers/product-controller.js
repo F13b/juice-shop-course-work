@@ -96,54 +96,87 @@ const deleteProduct = (req, res) => {
     .catch((error) => console.log(error));
 }
 
+const getProductsFromCart = async (req, res) => {
+    Order
+    .findOne({User: '62851d9faaeb35d8de8d0662'})
+    .then((order) =>{
+        res.render(createPath('cart'), {order});
+    })
+    .catch((error) => console.log(error));
+}
+
 const addToBasket = async (req, res) => {
-    const {user_id, product_id, count} = req.body;
+
+    const {product_id, count} = req.body;
 
     let order = await Order.findOne({User: '62851d9faaeb35d8de8d0662'});
 
     if (!order) {
+        let product = await Juice.findById(product_id);
+        
         order = {
             User: '62851d9faaeb35d8de8d0662',
             Purchases: [
                 {
-                    Product: product_id,
-                    Count: count
+                    productID: product_id,
+                    productName: product.Name, 
+                    productPrice: product.Price * parseInt(count),
+                    productCount: parseInt(count)
                 }
             ]
-        }
+        };
 
-        try {
-            await new Order(order).save().then((result) => res.redirect('/shop')).catch((error) => {console.log(error); res.status(400).redirect('/error')})
-        } catch (error) {
-            console.log(error); 
-            res.redirect('/shop');
-        }        
+        await new Order(order)
+        .save()
+        .then((result) => res.redirect('/shop'))
+        .catch((error) => {
+            console.log(error);
+            res.redirect('/error');
+        })
     } else {
         const order_id = order.id;
 
-        order.Purchases.forEach(item => {
-            if (item.Product == product_id) {
-                item.Count += parseInt(count);
-                
-                try {
-                    Order.findByIdAndUpdate(order_id, order).then((result) => res.redirect('/shop')).catch((error) => {console.log(error); res.redirect('/error')})
-                } catch (error) {
-                    console.log(error); 
+        let hasProduct = [];
+
+        hasProduct = order.Purchases.filter(prod => prod.productID == product_id);
+
+        if (hasProduct.length) {
+            let product = await Juice.findById(product_id);
+
+            if (product) {
+                hasProduct[0].productCount += parseInt(count);
+                hasProduct[0].productPrice = hasProduct[0].productCount * product.Price;
+
+                await Order
+                .findByIdAndUpdate(order_id, order)
+                .then((result) => res.redirect('/shop'))
+                .catch((error) => {
+                    console.log(error);
                     res.redirect('/error');
-                } 
+                })
             }
-        });
+        } else {
+            let product = await Juice.findById(product_id);
 
-        order.Purchases.push({Product: product_id, Count: count}); 
+            if (product) {
+                
+                order.Purchases.push({
+                    productID: product_id,
+                    productName: product.Name,
+                    productPrice: product.Price * parseInt(count),
+                    productCount: parseInt(count)
+                });
 
-        try {
-            Order.findByIdAndUpdate(order_id, order).then((result) => res.redirect('/shop')).catch((error) => {console.log(error); res.redirect('/error')})
-        } catch (error) {
-            console.log(error); 
-            res.redirect('/error');
-        } 
-    }
-    
+                await Order
+                .findByIdAndUpdate(order_id, order)
+                .then((result) => res.redirect('/shop'))
+                .catch((error) => {
+                    console.log(error);
+                    res.redirect('/error');
+                })
+            }
+        }
+    }    
 }
 
 const removeProductFromCart = async (req, res) => {
@@ -184,5 +217,6 @@ module.exports = {
     updateProduct,
     deleteProduct,
     addToBasket,
-    removeProductFromCart
+    removeProductFromCart,
+    getProductsFromCart
 }

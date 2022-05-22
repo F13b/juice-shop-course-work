@@ -3,7 +3,7 @@ const router = express.Router();
 const { getProductsForShop, getProductFromShop, 
         getProductsForManager, getProductForEdit, 
         addProduct, updateProduct, deleteProduct,
-        addToBasket, removeProductFromCart } = require('../controllers/product-controller');
+        addToBasket, removeProductFromCart, getProductsFromCart } = require('../controllers/product-controller');
 
 const createPath = require('../helpers/create-path');
 const authMiddleware = require('../middleware/authMiddleware')
@@ -17,9 +17,7 @@ router.get('/managers-panel', (req, res) => {
     res.redirect('/managers-panel/add-product');
 });
 
-router.get('/cart', (req, res) => {
-    res.render(createPath('cart'));
-})
+router.get('/cart',getProductsFromCart)
 
 router.get('/shop', getProductsForShop);
 

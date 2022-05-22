@@ -3,17 +3,24 @@ const Schema = mongoose.Schema;
 
 const OrderSchema = new Schema({
     User: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: "User",
+        type: String,
+        required: true
     }, 
     Purchases: [ {
-        Product: {
+        productID: {
             type: String, 
             required: true,
             ref: 'Juice'
         },
-        Count: {
+        productName: {
+            type: String,
+            required: true,
+        }, 
+        productPrice: {
+            type: Number,
+            required: true,
+        },
+        productCount: {
             type: Number,
             required: true,
             default: 1

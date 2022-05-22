@@ -24,7 +24,6 @@
             <a href="/error" class="cart-link link">
                 <div class="cart-block">
                     <img src="/cart-logo.svg" alt="cart" class="cart-logo">
-                    <p class="cart-summ">0.00</p>
                 </div>
             </a>
             <div class="account-block">
@@ -34,7 +33,15 @@
     </header>
 
     <div class="content">
-        
+        <% if (order.Purchases.length) { %>
+            <% order.Purchases.forEach(item => { %>
+                <div class="product-card" style="border: 1px solid #000">
+                    <h1 class="product-name"><%= item.productName %></h1>
+                    <p><%= item.productCount %></p>
+                    <p><%= item.productPrice %></p>
+                </div>
+            <% }) %>
+        <% } %>
     </div>
 </body>
 </html>

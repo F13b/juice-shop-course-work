@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/getToken.js" defer></script>
     <title>Your Account</title>
 </head>
 <body>
     <header class="header">
-        <div class="logo-activities">
+        <div class="logo-activities" data-token="<%= token %>">
             <div class="logo">
                 <a href="/main" class="home-link link">
                     <img src="/logo.svg" alt="logotype" class="logo-img">
@@ -24,7 +25,6 @@
             <a href="/error" class="cart-link link">
                 <div class="cart-block">
                     <img src="/cart-logo.svg" alt="cart" class="cart-logo">
-                    <p class="cart-summ">0.00</p>
                 </div>
             </a>
             <div class="account-block">
@@ -32,6 +32,10 @@
             </div>
         </div>
     </header>
+
+
     <a href="/signup" class="red">Registration</a>
+
+
 </body>
 </html>

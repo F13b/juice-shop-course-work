@@ -11,11 +11,11 @@ const JuiceSchema = new Schema({
         required: true
     },
     Price: {
-        type: String,
+        type: Number,
         required: true
     },
     Count: {
-        type: String,
+        type: Number,
         required: true
     }, 
     Images: {

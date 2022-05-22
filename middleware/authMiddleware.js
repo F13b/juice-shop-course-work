@@ -11,7 +11,7 @@ module.exports = function (role) {
             const token = req.headers.authorization.split(' ')[1];
 
             if (!token) {
-                return res.status(403).json('non auth')
+                return res.redirect('/error')
             }
 
             const {role: userRole} = jwt.verify(token, secret);
@@ -21,12 +21,12 @@ module.exports = function (role) {
             }
 
             if (!hasRole) {
-                return res.status(403).json('nan')
+                return res.redirect('/error')
             }
             next();
         } catch (e) {
             console.log(e)
-            return res.status(403).json('non auth')
+            return res.redirect('/error')
         }
     }
 }
