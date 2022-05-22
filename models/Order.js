@@ -9,7 +9,7 @@ const OrderSchema = new Schema({
     }, 
     Purchases: [ {
         Product: {
-            type: mongoose.Schema.Types.ObjectId,
+            type: String,
             required: true,
             ref: 'Juice'
         },

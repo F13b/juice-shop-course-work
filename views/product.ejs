@@ -15,21 +15,25 @@
 
     <div class="content">
         <div class="product-container">
-            <div class="product-image-container">
-                <img src="data:<%=juice.Images.contentType%>;base64,
-                <%=juice.Images.data.toString('base64')%>" alt="<%= juice.Name %>" class="product-image"/>
-            </div>
-            <div class="product-info-container">
-                <div class="main-product-information">
-                    <h1 class="product-name"><%= juice.Name %></h1>
-                    <h1 class="product-price">&#x20bd; <%= juice.Price %></h1>
-                    <button class="add-to-cart">add to cart</button>
+            <form class="product-info-form" method="post">
+                <div class="product-image-container">
+                    <img src="data:<%=juice.Images.contentType%>;base64,
+                    <%=juice.Images.data.toString('base64')%>" alt="<%= juice.Name %>" class="product-image"/>
                 </div>
-                <div class="product-description-container">
-                    <h2 class="product-description-title">about this them</h2>
-                    <p class="product-description-text"><%= juice.Description %></p>
+                <div class="product-info-container">
+                    <div class="main-product-information">
+                        <h1 class="product-name"><%= juice.Name %></h1>
+                        <h1 class="product-price">&#x20bd; <%= juice.Price %></h1>
+                        <input type="number" name="count" value="5"/>
+                        <input type="text" name="product_id" value="<%= juice.id %>"/>
+                        <button class="add-to-cart" type="submit">add to cart</button>
+                    </div>
+                    <div class="product-description-container">
+                        <h2 class="product-description-title">about this them</h2>
+                        <p class="product-description-text"><%= juice.Description %></p>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
         <img src="/little-orange.svg" alt="mini-orange" class="little-orange-1">
         <img src="/little-pineapple.svg" alt="mini-orange" class="little-pineapple-1">

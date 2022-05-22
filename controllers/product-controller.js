@@ -2,7 +2,7 @@ const Juice = require('../models/Juice');
 const Order = require('../models/Order');
 const createPath = require('../helpers/create-path');
 var fs = require( 'fs' );
-const path = require('path'); 
+const path = require('path');
 
 const getProductsForShop = (req, res) => {
     Juice
@@ -91,7 +91,7 @@ const deleteProduct = (req, res) => {
     Juice
     .findByIdAndDelete(req.params.id)
     .then((result) =>{
-        res.sendStatus(200).redirect('/shop');
+        res.redirect('/shop');
     })
     .catch((error) => console.log(error));
 }
@@ -99,11 +99,11 @@ const deleteProduct = (req, res) => {
 const addToBasket = async (req, res) => {
     const {user_id, product_id, count} = req.body;
 
-    let order = await Order.findOne({User: user_id});
+    let order = await Order.findOne({User: '62851d9faaeb35d8de8d0662'});
 
     if (!order) {
         order = {
-            User: user_id,
+            User: '62851d9faaeb35d8de8d0662',
             Purchases: [
                 {
                     Product: product_id,
@@ -113,32 +113,66 @@ const addToBasket = async (req, res) => {
         }
 
         try {
-            await new Order(order).save().then((result) => res.redirect('/shop')).catch((error) => {console.log(error); res.status(400).redirect('/shop')})
-        } catch (e) {
+            await new Order(order).save().then((result) => res.redirect('/shop')).catch((error) => {console.log(error); res.status(400).redirect('/error')})
+        } catch (error) {
             console.log(error); 
-            res.status(400).redirect('/shop');
+            res.redirect('/shop');
         }        
     } else {
-        const id = order.id;
+        const order_id = order.id;
 
-        order = {
-            User: user_id,
-            Purchases: [
-                {
-                    Product: product_id,
-                    Count: count
-                }
-            ]
-        }
+        order.Purchases.forEach(item => {
+            if (item.Product == product_id) {
+                item.Count += parseInt(count);
+                
+                try {
+                    Order.findByIdAndUpdate(order_id, order).then((result) => res.redirect('/shop')).catch((error) => {console.log(error); res.redirect('/error')})
+                } catch (error) {
+                    console.log(error); 
+                    res.redirect('/error');
+                } 
+            }
+        });
+
+        order.Purchases.push({Product: product_id, Count: count}); 
 
         try {
-            await Order.findByIdAndUpdate(id, order).then((result) => res.redirect('/shop')).catch((error) => {console.log(error); res.status(400).redirect('/shop')})
-        } catch (e) {
+            Order.findByIdAndUpdate(order_id, order).then((result) => res.redirect('/shop')).catch((error) => {console.log(error); res.redirect('/error')})
+        } catch (error) {
             console.log(error); 
-            res.status(400).redirect('/shop');
-        }   
+            res.redirect('/error');
+        } 
     }
     
+}
+
+const removeProductFromCart = async (req, res) => {
+    const {user_id, product_id} = req.body;
+
+    let user_order = await Order.findOne({User: '62851d9faaeb35d8de8d0662'});
+
+    if (user_order) {
+        let order_id = user_order.id;
+        try {
+            user_order.Purchases.forEach(item => {
+                if (item.product == product_id) {
+                    let i = indexOf(item);
+
+                    user_order.Purchases.splice(i);
+
+                    try {
+                        Order.findByIdAndUpdate(order_id, user_order).then((result) => res.redirect('/shop')).catch((error) => {console.log(error); res.redirect('/error')})
+                    } catch (error) {
+                        console.log(error); 
+                        res.redirect('/error');
+                    }
+                }
+            })
+        } catch (error) {
+            console.log(error); 
+            res.redirect('/error');
+        }
+    }
 }
 
 module.exports = {
@@ -148,5 +182,7 @@ module.exports = {
     getProductForEdit,
     addProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    addToBasket,
+    removeProductFromCart
 }
