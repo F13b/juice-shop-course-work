@@ -1,14 +1,18 @@
 const Juice = require('../models/Juice');
 const Order = require('../models/Order');
 const createPath = require('../helpers/create-path');
+const hasToken = require('../helpers/hasToken');
 var fs = require( 'fs' );
 const path = require('path');
+const { secret } = require('../js/config');
+const jwt = require('jsonwebtoken');
 
 const getProductsForShop = (req, res) => {
     Juice
     .find()
     .then((juice) =>{
-        res.render(createPath('shop'), {juice});
+        
+        res.render(createPath('shop'), {juice, hasToken: hasToken(req)});
     })
     .catch((error) => console.log(error));
 }
@@ -17,7 +21,7 @@ const getProductFromShop = (req, res) => {
     Juice
     .findById(req.params.id) 
     .then((juice) =>{
-        res.render(createPath('product'), {juice});
+        res.render(createPath('product'), {juice, hasToken: hasToken(req)});
     })
     .catch((error) => console.log(error));
 }
@@ -100,7 +104,7 @@ const getProductsFromCart = async (req, res) => {
     Order
     .findOne({User: '62851d9faaeb35d8de8d0662'})
     .then((order) =>{
-        res.render(createPath('cart'), {order});
+        res.render(createPath('cart'), {order, hasToken: hasToken(req)});
     })
     .catch((error) => console.log(error));
 }
@@ -109,13 +113,19 @@ const addToBasket = async (req, res) => {
 
     const {product_id, count} = req.body;
 
-    let order = await Order.findOne({User: '62851d9faaeb35d8de8d0662'});
+    let token = req.cookies.token;
+
+    let user = jwt.verify(token, secret);
+
+    const user_id = user.id;
+
+    let order = await Order.findOne({User: user_id});
 
     if (!order) {
         let product = await Juice.findById(product_id);
         
         order = {
-            User: '62851d9faaeb35d8de8d0662',
+            User: user_id,
             Purchases: [
                 {
                     productID: product_id,
@@ -188,9 +198,15 @@ const addToBasket = async (req, res) => {
 }
 
 const removeProductFromCart = async (req, res) => {
-    const {user_id, product_id} = req.body;
+    const {product_id} = req.body;
 
-    let user_order = await Order.findOne({User: '62851d9faaeb35d8de8d0662'});
+    let token = req.cookies.token;
+
+    let user = jwt.verify(token, secret);
+
+    const user_id = user.id;
+
+    let user_order = await Order.findOne({User: user_id});
 
     if (user_order) {
         let order_id = user_order.id;

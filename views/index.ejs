@@ -31,9 +31,15 @@
                     <img src="/cart-logo.svg" alt="cart" class="cart-logo">
                 </div>
             </a>
-            <div class="account-block">
-                <a href="/signin" class="account-link link">Sign in</a>
-            </div>
+            <% if (hasToken) { %>
+                <div class="account-block-icon">
+                    <a href="/account" class="account-link link">acc</a>
+                </div>
+            <% } else { %>
+                <div class="account-block">
+                    <a href="/signin" class="account-link link">Sign in</a>
+                </div>
+            <% } %>
         </div>
     </header>
     <div class="content">
