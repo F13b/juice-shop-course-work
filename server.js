@@ -9,6 +9,7 @@ const mainsRouter = require('./routes/main-routes');
 const adminRouter = require('./routes/admin-routes');
 const createPath = require('./helpers/create-path');
 var bodyParser = require( 'body-parser' );
+const cookueParser = require('cookie-parser');
 
 // create express app
 const app = express();
@@ -35,6 +36,7 @@ app.use(express.static('js'));
 app.use(express.static('rive'));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+app.use(cookueParser());
 app.use(methodOverride('_method'));
 app.use(mainsRouter)
 app.use(productRouter); 

@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const {GetMainPage} = require('../controllers/main-controller')
+const {GetMainPage, GetErrorPage} = require('../controllers/main-controller')
 
 router.get('/main', GetMainPage);
+
+router.get('/error', GetErrorPage)
 
 router.get('/home', (req, res) => {
     res.redirect('/main');

@@ -25,10 +25,9 @@
             </div>
         </div>
         <div class="acount-activities">
-            <a href="/error" class="cart-link link">
+            <a href="/cart" class="cart-link">
                 <div class="cart-block">
                     <img src="/cart-logo.svg" alt="cart" class="cart-logo">
-                    <p class="cart-summ">0.00</p>
                 </div>
             </a>
             <div class="account-block">
@@ -38,9 +37,9 @@
     </header>
 
     <div class="content">
-        <div class="product-cards-container">
-            <% if (juice.length) {%>
-                <% juice.forEach(({id, Name, Price, Images}) => { %>
+        <% if (juice.length) {%>
+            <% juice.forEach(({id, Name, Price, Images}) => { %>
+                <div class="product-cards-container">
                     <div class="product-card">
                         <a href="/shop/<%= id %>" class="card-product-link">
                             <img src="data:<%=Images.contentType%>;base64,
@@ -50,16 +49,16 @@
                         </a>
                         <button type="button" class="card-product-add-to-card" data-id="<%= id %>">Add to cart</button>
                     </div>
-                <% }) %>
-            <% } else { %>
-                <div class="no-products-container">
-                    <h1 class="no-products">Sorry, it looks like there are no products in the store right now... (˘･_･˘)</h1>
-                    <div class="logistics-man">
-                        <canvas class="rive-logistic" id="canvas" width="500" height="500"></canvas>
-                    </div>
                 </div>
-            <% } %>
-        </div>
+            <% }) %>
+        <% } else { %>
+            <div class="no-products-container">
+                <h1 class="no-products">Sorry, it looks like there are no products in the store right now... (˘･_･˘)</h1>
+                <div class="logistics-man">
+                    <canvas class="rive-logistic" id="canvas" width="500" height="500" style="background: #fff"></canvas>
+                </div>
+            </div>
+        <% } %>
     </div>
 
     <footer class="footer">
@@ -122,7 +121,7 @@
     <script src="https://unpkg.com/@rive-app/canvas@1.0.47"></script>
     <script>
         new rive.Rive({
-            src: "/1180-2271-logistics-man-boxes.riv",
+            src: "/1-delivery.riv",
             canvas: document.getElementById("canvas"),
             autoplay: true
         });

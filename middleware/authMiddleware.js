@@ -1,4 +1,4 @@
-
+const jwt = require('jsonwebtoken');
 const { secret } = require('../js/config');
 
 module.exports = function (role) {
@@ -8,22 +8,22 @@ module.exports = function (role) {
         }
 
         try {
-            const token = req.headers.authorization.split(' ')[1];
+            const token = req.cookies.token;
 
             if (!token) {
                 return res.redirect('/error')
-            }
+            } else {
+                const {role: userRole} = jwt.verify(token, secret);
+                let hasRole = false;
+                if (role == userRole) {
+                    hasRole = true
+                }
 
-            const {role: userRole} = jwt.verify(token, secret);
-            let hasRole = false;
-            if (role == userRole) {
-                hasRole = true
+                if (!hasRole) {
+                    return res.redirect('/error')
+                }
+                next();
             }
-
-            if (!hasRole) {
-                return res.redirect('/error')
-            }
-            next();
         } catch (e) {
             console.log(e)
             return res.redirect('/error')

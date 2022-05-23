@@ -24,6 +24,10 @@ const OrderSchema = new Schema({
             type: Number,
             required: true,
             default: 1
+        },
+        productImages: {
+            data: Buffer,
+            contentType: String  
         }
     } ]
 });

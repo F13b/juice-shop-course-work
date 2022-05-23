@@ -50,7 +50,10 @@ const Authorize = async (req, res) => {
             const validPassword = await bcrypt.compare(Password, candidate.Password);
             if (validPassword) {
                 const token = createToken(candidate._id, candidate.Role);
-                res.render(createPath('account'), { token } );
+                res.cookie('token', token, {
+                    httpOnly: true
+                })
+                res.render(createPath('account') );
             } else {
                 res.render(createPath('auth'), { message: "Incorrect login or password!"} );
             }

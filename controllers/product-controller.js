@@ -119,9 +119,13 @@ const addToBasket = async (req, res) => {
             Purchases: [
                 {
                     productID: product_id,
-                    productName: product.Name, 
+                    productName: product.Name,
                     productPrice: product.Price * parseInt(count),
-                    productCount: parseInt(count)
+                    productCount: parseInt(count),
+                    productImages: {
+                        data: product.Images.data,
+                        contentType: product.Images.contentType 
+                    }
                 }
             ]
         };
@@ -164,7 +168,11 @@ const addToBasket = async (req, res) => {
                     productID: product_id,
                     productName: product.Name,
                     productPrice: product.Price * parseInt(count),
-                    productCount: parseInt(count)
+                    productCount: parseInt(count),
+                    productImages: {
+                        data: product.Images.data,
+                        contentType: product.Images.contentType 
+                    }
                 });
 
                 await Order
@@ -189,16 +197,16 @@ const removeProductFromCart = async (req, res) => {
         try {
             user_order.Purchases.forEach(item => {
                 if (item.product == product_id) {
-                    let i = indexOf(item);
+                    let i = user_order.Purchases.indexOf(item);
 
                     user_order.Purchases.splice(i);
 
-                    try {
-                        Order.findByIdAndUpdate(order_id, user_order).then((result) => res.redirect('/shop')).catch((error) => {console.log(error); res.redirect('/error')})
-                    } catch (error) {
-                        console.log(error); 
-                        res.redirect('/error');
-                    }
+                    Order.findByIdAndUpdate(order_id, user_order)
+                    .then((result) => res.redirect('/shop'))
+                    .catch((error) => {
+                        console.log(error);
+                         res.redirect('/error')
+                    })
                 }
             })
         } catch (error) {

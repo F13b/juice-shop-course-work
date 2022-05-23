@@ -4,7 +4,7 @@ const { Registrate, Authorize } = require('../controllers/user-controller')
 const createPath = require('../helpers/create-path');
 
 router.get('/account', (req, res) => {
-    res.render(createPath('account'), { message: '' });
+    res.render(createPath('account'), { message: ''});
 });
 
 router.get('/signup', (req, res) => {
