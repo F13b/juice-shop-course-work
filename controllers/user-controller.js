@@ -11,13 +11,13 @@ function createToken(id, role) {
         role
     }
 
-    return jwt.sign(payload, secret, {expiresIn: '2h'});
+    return jwt.sign(payload, secret, {expiresIn: '24h'});
 }
 
 const Registrate = async (req, res) => {
-    const {Name, Password, ConfirmPassword} = req.body;
+    const {Email, Password, ConfirmPassword} = req.body;
 
-    const candidate = await User.findOne({Name});
+    const candidate = await User.findOne({Email});
 
     if (!candidate) {
         if (Password == ConfirmPassword) {
@@ -25,7 +25,7 @@ const Registrate = async (req, res) => {
                 const Salt = await bcrypt.genSalt();
                 const HashedPassword = await bcrypt.hash(Password, Salt);
 
-                new User({Name, Password: HashedPassword, Role: 'User'}).save().then(res.redirect('/main')).catch((error) => console.log(error));
+                new User({Email, Password: HashedPassword, Role: 'User'}).save().then(res.redirect('/main')).catch((error) => console.log(error));
             } catch (error) {
                 console.log(error);
                 res.render(createPath('reg'), { message: "Oops, something went wrong..."} );
@@ -39,9 +39,9 @@ const Registrate = async (req, res) => {
 }
 
 const Authorize = async (req, res) => {
-    const {Name, Password} = req.body;
+    const {Email, Password} = req.body;
 
-    const candidate = await User.findOne({Name})
+    const candidate = await User.findOne({Email})
 
     if (!candidate) {
         res.render(createPath('auth'), { message: "A user with this username was not found"} );
@@ -53,7 +53,7 @@ const Authorize = async (req, res) => {
                 res.cookie('token', token, {
                     httpOnly: true
                 })
-                res.render(createPath('account') );
+                res.redirect('/account');
             } else {
                 res.render(createPath('auth'), { message: "Incorrect login or password!"} );
             }
@@ -63,7 +63,23 @@ const Authorize = async (req, res) => {
     }
 }
 
+const Logout = async (req, res) => {
+    res.clearCookie('token');
+    res.redirect('/main')
+}
+
+const GetUserPage = async (req, res) => {
+    const token = req.cookies.token;
+    const user_data = jwt.verify(token, secret);
+
+    let user = await User.findById(user_data.id)
+
+    res.render(createPath('account'), {Email: user.Email});
+}
+
 module.exports = {
     Registrate,
-    Authorize
+    Authorize,
+    Logout,
+    GetUserPage
 }

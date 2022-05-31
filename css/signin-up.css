@@ -139,3 +139,14 @@ body::-webkit-scrollbar-thumb {
     border-radius: .3125rem;
     margin: 1rem 0;
 }
+
+.page-title-container {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.page-title {
+    text-align: center;
+    text-transform: capitalize;
+    font-size: 1.5rem;
+}

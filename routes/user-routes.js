@@ -1,11 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { Registrate, Authorize } = require('../controllers/user-controller')
+const { Registrate, Authorize, Logout, GetUserPage } = require('../controllers/user-controller')
 const createPath = require('../helpers/create-path');
 
-router.get('/account', (req, res) => {
-    res.render(createPath('account'), { message: ''});
-});
+router.get('/account', GetUserPage);
 
 router.get('/signup', (req, res) => {
     res.render(createPath('reg'), { message: '' });
@@ -30,5 +28,7 @@ router.get('/authorization', (req, res) => {
 });
 
 router.post('/signin', Authorize);
+
+router.get('/account/logout', Logout)
 
 module.exports = router;

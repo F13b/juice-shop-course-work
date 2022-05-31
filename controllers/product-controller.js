@@ -1,11 +1,12 @@
 const Juice = require('../models/Juice');
 const Order = require('../models/Order');
+const User = require('../models/User');
+const path = require('path');
 const createPath = require('../helpers/create-path');
 const hasToken = require('../helpers/hasToken');
+const getData = require('../helpers/getDataFromToken');
+const nodemailer = require('nodemailer');
 var fs = require( 'fs' );
-const path = require('path');
-const { secret } = require('../js/config');
-const jwt = require('jsonwebtoken');
 
 const getProductsForShop = (req, res) => {
     Juice
@@ -101,9 +102,12 @@ const deleteProduct = (req, res) => {
 }
 
 const getProductsFromCart = async (req, res) => {
+
+    const user = getData(req);
+
     Order
-    .findOne({User: '62851d9faaeb35d8de8d0662'})
-    .then((order) =>{
+    .findOne({User: user.id})
+    .then((order) => {
         res.render(createPath('cart'), {order, hasToken: hasToken(req)});
     })
     .catch((error) => console.log(error));
@@ -113,9 +117,7 @@ const addToBasket = async (req, res) => {
 
     const {product_id, count} = req.body;
 
-    let token = req.cookies.token;
-
-    let user = jwt.verify(token, secret);
+    let user = getData(req);
 
     const user_id = user.id;
 
@@ -200,9 +202,7 @@ const addToBasket = async (req, res) => {
 const removeProductFromCart = async (req, res) => {
     const {product_id} = req.body;
 
-    let token = req.cookies.token;
-
-    let user = jwt.verify(token, secret);
+    let user = getData(req);
 
     const user_id = user.id;
 
@@ -232,6 +232,36 @@ const removeProductFromCart = async (req, res) => {
     }
 }
 
+const completeOrder = async (req, res) => {
+
+    const user = getData(req);
+
+    const userEmail = await User.findById(user.id);
+
+    const userOrder = await Order.findOne({User: user.id});
+
+    let testEmailAccount = await nodemailer.createTestAccount();
+
+    let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'mpt.projects236@gmail.com',
+          pass: 'mpttupatop',
+        },
+    });
+
+    await transporter.sendMail({
+        from: '"Reform Juice" <mpt.projects236@gmail.com>',
+        to: userEmail,
+        subject: 'Your order!',
+        text: 'This message with attachments.',
+        html:
+          `Thank you for your order. Your purshases: ${ userOrder.Purchases.forEach(item => {
+                item
+          }) }`
+    })
+}
+
 module.exports = {
     getProductsForShop,
     getProductFromShop,
@@ -242,5 +272,6 @@ module.exports = {
     deleteProduct,
     addToBasket,
     removeProductFromCart,
-    getProductsFromCart
+    getProductsFromCart,
+    completeOrder
 }

@@ -9,7 +9,7 @@ const mainsRouter = require('./routes/main-routes');
 const adminRouter = require('./routes/admin-routes');
 const createPath = require('./helpers/create-path');
 var bodyParser = require( 'body-parser' );
-const cookueParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 
 // create express app
 const app = express();

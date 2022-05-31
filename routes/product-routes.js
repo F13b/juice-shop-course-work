@@ -3,8 +3,7 @@ const router = express.Router();
 const { getProductsForShop, getProductFromShop, 
         getProductsForManager, getProductForEdit, 
         addProduct, updateProduct, deleteProduct,
-        addToBasket, removeProductFromCart, getProductsFromCart } = require('../controllers/product-controller');
-
+        addToBasket, removeProductFromCart, getProductsFromCart, completeOrder } = require('../controllers/product-controller');
 const createPath = require('../helpers/create-path');
 const authMiddleware = require('../middleware/authMiddleware')
 const upload = require('../middleware/uploadImages')
@@ -27,14 +26,16 @@ router.get('/managers-panel/all-products', authMiddleware('Manager'),  getProduc
 
 router.get('/managers-panel/edit/:id', authMiddleware('Manager'),  getProductForEdit);
 
-router.post('/managers-panel/add-product', upload.single( 'Image' ), addProduct);
+router.post('/managers-panel/add-product', [authMiddleware('User'), upload.single( 'Image' )], addProduct);
 
-router.put('/managers-panel/edit/:id', upload.single( 'Image' ), updateProduct);
+router.put('/managers-panel/edit/:id', [authMiddleware('User'), upload.single( 'Image' )], updateProduct);
 
 router.delete('/managers-panel/all-products/:id', authMiddleware('Manager'), deleteProduct);
 
-router.post('/shop/:id', addToBasket);
+router.post('/shop/:id', authMiddleware('User'), addToBasket);
 
-router.delete('/cart/:id', removeProductFromCart)
+router.delete('/cart/:id', authMiddleware('User'), removeProductFromCart);
+
+router.post('/cart/send', completeOrder)
  
 module.exports = router;
