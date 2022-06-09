@@ -25,13 +25,6 @@
             </div>
         </div>
     </header>
-    <% if (message != '' && message == "A user with this username was not found") { %>
-        <div class="message-container error">
-            <p class="message">
-                <%= message %>
-            </p>
-        </div>
-    <% } %>
     <div class="form-container">
         <div class="page-title-container">
             <p class="page-title">Sign in</p>
@@ -40,6 +33,13 @@
             <div class="user-attribute-container">
                 <label class="user-attribute-label" for="Email">Email</label>
                 <input type="email" class="user-attribute-field" name="Email" required>
+                <% if (message != '' && message == "A user with this username was not found") { %>
+                    <div class="message-container error">
+                        <p class="message">
+                            <%= message %>
+                        </p>
+                    </div>
+                <% } %>
             </div>
             <div class="user-attribute-container">
                 <label class="user-attribute-label" for="Password">Password</label>

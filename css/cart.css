@@ -1,0 +1,159 @@
+/* Clobal styles */
+
+html, body {
+    font-family: 'Ubuntu', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.link {
+    text-decoration: none;
+    color: #000;
+    outline: none;
+}
+
+body::-webkit-scrollbar {
+    width: 7px;
+    padding: 20px 0;
+}
+
+body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: rgba(207, 199, 199, 0.9);
+    border-radius: 3px;
+} 
+
+/* Imports */
+
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway&family=Ubuntu&display=swap');
+
+/* Content */
+
+.content {
+    width: 80%;
+    margin: 0 auto;
+    font-family: 'Ubuntu', sans-serif;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.product-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    padding: 23px 23px 27px 23px;
+    text-align: left;
+    cursor: pointer;
+    transition: all .4s ease;
+    width: 19%;
+}
+
+.product-card:hover {
+    box-shadow: 0px 2px 4px rgba(59, 69, 123, 0.2), 0px 4px 8px rgba(92, 107, 192, 0.2);
+    border-radius: 8px;
+}
+
+.card-product-link {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+}
+
+.card-product-image {
+    width: 100%;
+    height: 200px;
+}
+
+.card-product-name {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 150%;
+    letter-spacing: 0.0275em;
+    color: #121212;
+    margin: 12px 0 10px 0;
+}
+
+.card-product-price {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 150%;
+    color: #121212;
+    margin: 0 0 10px 0;
+}
+
+.card-product-count {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 150%;
+    color: #121212;
+    margin: 0 0 10px 0;
+}
+
+.product-delete {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.product-delete-icon {
+    cursor: pointer;
+}
+
+.product-delete-icon:hover {
+    fill: red;
+    background-color: lightgrey;
+    border-radius: 4px;
+}
+
+svg path {
+    fill:inherit;
+    stroke:inherit;
+    stroke-width:inherit;
+}
+
+.place-order-form {
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.place-order-btn {
+    appearance: none;
+    border-color: transparent;
+    background-color: hsl(103, 59%, 39%);
+    padding: 0.625rem 2.5rem;
+    color: #fff;
+    border-radius: 0.3125rem;
+    outline: none;
+    transition: all .4s ease;
+}
+
+.place-order-btn:hover {
+    background-color: hsl(103, 60%, 35%);
+}
+
+.no-products {
+    font-family: 'Ubuntu', sans-serif;
+    margin-bottom: 50px;
+}
+
+.shop_link-2 {
+    padding: 0.625rem 2.8125rem;
+    border: 0.0625rem solid #4A9E29;
+    border-radius: 0.3125rem;
+    color: #4A9E29;
+}

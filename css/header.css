@@ -49,6 +49,11 @@
     transition: all .4s ease;
 }
 
+.account-icon {
+    height: 23px;
+    width: 23px;
+}
+
 .account-link:hover {
     background-color: hsl(103, 60%, 35%);
 }

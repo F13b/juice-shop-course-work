@@ -28,8 +28,8 @@
         <div class="form-container">
             <form action="/admins-panel/add-user" class="add-user-form" method="post">
                 <div class="user-attribute-container">
-                    <label class="user-attribute-label" for="Name">Login <span class="required">*</span></label>
-                    <input type="text" class="user-attribute-field" name="Name" required>
+                    <label class="user-attribute-label" for="Name">Email <span class="required">*</span></label>
+                    <input type="email" class="user-attribute-field" name="Email" required>
                     <% if (message != '' && message == 'A user with this username is already in the system!') { %>
                         <div class="message-container error">
                             <span class="message">

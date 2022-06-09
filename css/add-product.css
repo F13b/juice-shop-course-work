@@ -107,6 +107,7 @@ input, label {
     transition: all .4s ease;
     color: #fff;
     font-size: 1.15rem;
+    cursor: pointer;
 }
 
 .action-button-add:hover {

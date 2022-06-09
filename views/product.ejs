@@ -32,7 +32,9 @@
             </a>
             <% if (hasToken) { %>
                 <div class="account-block-icon">
-                    <a href="/account" class="account-link link">acc</a>
+                    <a href="/account" class="account-link-icon link">
+                        <img src="/user.svg" alt="account" class="account-icon">
+                    </a>
                 </div>
             <% } else { %>
                 <div class="account-block">
@@ -53,7 +55,10 @@
                     <div class="main-product-information">
                         <h1 class="product-name"><%= juice.Name %></h1>
                         <h1 class="product-price">&#x20bd; <%= juice.Price %></h1>
-                        <input type="number" name="count" value="1" min="1" max="<%= juice.Count %>"/>
+                        <div class="count-container">
+                            <label for="count" class="count-label">Count</label>
+                            <input class="product-count" type="number" name="count" value="1" min="1" max="<%= juice.Count %>"/>
+                        </div>
                         <input type="hidden" name="product_id" value="<%= juice.id %>"/>
                         <button class="add-to-cart" type="submit">add to cart</button>
                     </div>
@@ -64,14 +69,11 @@
                 </div>
             </form>
         </div>
-        <img src="/little-orange.svg" alt="mini-orange" class="little-orange-1">
         <img src="/little-pineapple.svg" alt="mini-orange" class="little-pineapple-1">
-        <img src="/little-orange.svg" alt="mini-orange" class="little-orange-2">
         <img src="/little-pineapple.svg" alt="mini-orange" class="little-pineapple-2">
         <img src="/little-orange.svg" alt="mini-orange" class="little-orange-3">
         <img src="/little-pineapple.svg" alt="mini-orange" class="little-pineapple-3">
         <img src="/little-orange.svg" alt="mini-orange" class="little-orange-4">
-        <img src="/little-pineapple.svg" alt="mini-orange" class="little-pineapple-4">
     </div>
 
     <footer class="footer">

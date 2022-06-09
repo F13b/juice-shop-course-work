@@ -32,7 +32,9 @@
             </a>
             <% if (hasToken) { %>
                 <div class="account-block-icon">
-                    <a href="/account" class="account-link link">acc</a>
+                    <a href="/account" class="account-link-icon link">
+                        <img src="/user.svg" alt="account" class="account-icon">
+                    </a>
                 </div>
             <% } else { %>
                 <div class="account-block">
@@ -43,9 +45,9 @@
     </header>
 
     <div class="content">
-        <% if (juice.length) {%>
-            <% juice.forEach(({id, Name, Price, Images}) => { %>
-                <div class="product-cards-container">
+        <div class="product-cards-container">
+            <% if (juice.length) {%>
+                <% juice.forEach(({id, Name, Price, Images}) => { %>
                     <div class="product-card">
                         <a href="/shop/<%= id %>" class="card-product-link">
                             <img src="data:<%=Images.contentType%>;base64,
@@ -53,18 +55,17 @@
                             <h2 class="card-product-name"><%= Name %></h2>
                             <h4 class="card-product-price">&#x20bd; <%= Price %></h4>
                         </a>
-                        <button type="button" class="card-product-add-to-card" data-id="<%= id %>">Add to cart</button>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <div class="no-products-container">
+                    <h1 class="no-products">Sorry, it looks like there are no products in the store right now... (˘･_･˘)</h1>
+                    <div class="logistics-man">
+                        <canvas class="rive-logistic" id="canvas" width="500" height="500" style="background: #fff"></canvas>
                     </div>
                 </div>
-            <% }) %>
-        <% } else { %>
-            <div class="no-products-container">
-                <h1 class="no-products">Sorry, it looks like there are no products in the store right now... (˘･_･˘)</h1>
-                <div class="logistics-man">
-                    <canvas class="rive-logistic" id="canvas" width="500" height="500" style="background: #fff"></canvas>
-                </div>
-            </div>
-        <% } %>
+            <% } %>   
+        </div>
     </div>
 
     <footer class="footer">

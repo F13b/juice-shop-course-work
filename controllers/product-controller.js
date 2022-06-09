@@ -234,32 +234,32 @@ const removeProductFromCart = async (req, res) => {
 
 const completeOrder = async (req, res) => {
 
-    const user = getData(req);
+    const userCredentials = getData(req);
 
-    const userEmail = await User.findById(user.id);
+    const user = await User.findById(userCredentials.id);
 
     const userOrder = await Order.findOne({User: user.id});
 
-    let testEmailAccount = await nodemailer.createTestAccount();
-
     let transporter = nodemailer.createTransport({
-        service: 'gmail',
+        host: "smtp.google.com",
+        port: 587,
+        secure: false, // true for 465, false for other ports
         auth: {
-          user: 'mpt.projects236@gmail.com',
-          pass: 'mpttupatop',
+            user: 'mpt.projects236@gmail.com', // generated ethereal user
+            pass: 'mpttupatop', // generated ethereal password
         },
     });
 
-    await transporter.sendMail({
-        from: '"Reform Juice" <mpt.projects236@gmail.com>',
-        to: userEmail,
-        subject: 'Your order!',
-        text: 'This message with attachments.',
-        html:
-          `Thank you for your order. Your purshases: ${ userOrder.Purchases.forEach(item => {
-                item
-          }) }`
-    })
+    // send mail with defined transport object
+    transporter.sendMail({
+        from: '"Reform juice" <mpt.projects236@gmail.com>', // sender address
+        to: "p.a.kononenkov@gmail.com", // list of receivers
+        subject: "Hello ✔", // Subject line
+        text: "Hello world?", // plain text body
+        html: "<b>Hello world?</b>", // html body
+    });
+    
+    res.redirect('/main')
 }
 
 module.exports = {

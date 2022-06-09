@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/header.css">
-    <link rel="stylesheet" href="/shop-page.css">
+    <link rel="stylesheet" href="/cart.css">
     <link rel="icon" type="images/png" href="/leaf-icon.png"/>
     <title>Cart</title>
 </head>
@@ -31,7 +31,9 @@
             </a>
             <% if (hasToken) { %>
                 <div class="account-block-icon">
-                    <a href="/account" class="account-link link">acc</a>
+                    <a href="/account" class="account-link-icon link">
+                        <img src="/user.svg" alt="account" class="account-icon">
+                    </a>
                 </div>
             <% } else { %>
                 <div class="account-block">
@@ -56,7 +58,7 @@
                                     <div class="product-card-text-container">
                                         <h2 class="card-product-name"><%= item.productName %></h2>
                                         <h4 class="card-product-price">&#x20bd; <%= item.productPrice %></h4>
-                                        <h4 class="card-product-count"><%= item.productCount %></h4>
+                                        <h4 class="card-product-count">Count: <%= item.productCount %></h4>
                                     </div>
                                 </a> 
                                 <div class="product-card-actions-container">
@@ -70,19 +72,22 @@
                         </div>
                     </div>
                 <% }) %>
+                <form action="/cart" class="place-order-form" method="post">
+                    <button type="submit" class="place-order-btn">Place an order</button>
+        
+                </form>
             <% } else { %>
                 <div class="no-products-container">
                     <h1 class="no-products">It looks like you haven't added any items to the cart yet!</h1>
+                    <a href="/shop" class="shop_link-2 link">Shop Now</a>
                 </div>
             <% } %>
         <% } else { %>
             <div class="no-products-container">
                 <h1 class="no-products">It looks like you haven't added any items to the cart yet!</h1>
+                <a href="/shop" class="shop_link-2 link">Shop Now</a>
             </div>
-        <% } %>
-        <form action="/cart/send" class="">
-            <button type="submit">Oform</button>
-        </form>
+        <% } %>        
     </div>
 
     <script>

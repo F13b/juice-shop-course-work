@@ -84,6 +84,10 @@ body::-webkit-scrollbar-thumb {
     transition: all .4s ease;
 }
 
+.card-user-name {
+    text-transform: none;
+}
+
 .user-card:hover {
     box-shadow: 0rem .125rem .25rem rgba(59, 69, 123, 0.2), 0rem .25rem .5rem rgba(92, 107, 192, 0.2);
     border-radius: .5rem;

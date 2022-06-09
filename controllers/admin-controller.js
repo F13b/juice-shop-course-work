@@ -26,9 +26,9 @@ const addUsersPage = (req, res) => {
 
 const addUser = async (req, res) => {
 
-    const {Name, Password,  ConfirmPassword, UserRole} = req.body;
-    
-    let candidate = await User.findOne({Name: Name});
+    const {Email, Password,  ConfirmPassword, UserRole} = req.body;
+
+    let candidate = await User.findOne({Email: Email});
 
     if (candidate) {
         res.render(createPath('admin-add-users'), { message: 'A user with this username is already in the system!' });
@@ -37,7 +37,7 @@ const addUser = async (req, res) => {
             try {
                 const Salt = await bcrypt.genSalt();
                 const HashedPassword = await bcrypt.hash(Password, Salt);                
-                new User({Name, Password: HashedPassword, Role: UserRole})
+                new User({Email, Password: HashedPassword, Role: UserRole})
                 .save()
                 .then(() => {
                     User

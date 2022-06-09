@@ -36,7 +36,7 @@ app.use(express.static('js'));
 app.use(express.static('rive'));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-app.use(cookueParser());
+app.use(cookieParser());
 app.use(methodOverride('_method'));
 app.use(mainsRouter)
 app.use(productRouter); 
