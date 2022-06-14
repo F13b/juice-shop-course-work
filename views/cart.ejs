@@ -46,8 +46,9 @@
     <div class="content">
         <% if (order != null) {%>
             <% if (order.Purchases.length) {%>
-                <% order.Purchases.forEach((item) => { %>
-                    <div class="product-cards-container">
+                <div class="product-cards-container">
+                    <% order.Purchases.forEach((item) => { %>
+                    
                         <div class="product-card">
                             <a href="/shop/<%= item.productID %>" class="card-product-link">
                                 <img src="data:<%=item.productImages.contentType%>;base64,
@@ -70,12 +71,11 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                <% }) %>
+                    <% }) %> 
+                </div>
                 <form action="/cart" class="place-order-form" method="post">
-                    <button type="submit" class="place-order-btn">Place an order</button>
-        
-                </form>
+                    <button type="submit" class="place-order-btn">Place an order</button>        
+                </form> 
             <% } else { %>
                 <div class="no-products-container">
                     <h1 class="no-products">It looks like you haven't added any items to the cart yet!</h1>
@@ -94,7 +94,7 @@
         document.addEventListener('click', (e) => {
             const id = e.target?.dataset?.id || null;
             if (id) {
-                fetch(`/cart/${id}`, { method: 'DELETE' }).then(() => window.location.reload)
+                fetch(`/cart/${id}`, { method: 'DELETE', }).then(() => window.location.reload())
             }
         })
     </script>

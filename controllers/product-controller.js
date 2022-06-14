@@ -232,36 +232,6 @@ const removeProductFromCart = async (req, res) => {
     }
 }
 
-const completeOrder = async (req, res) => {
-
-    const userCredentials = getData(req);
-
-    const user = await User.findById(userCredentials.id);
-
-    const userOrder = await Order.findOne({User: user.id});
-
-    let transporter = nodemailer.createTransport({
-        host: "smtp.google.com",
-        port: 587,
-        secure: false, // true for 465, false for other ports
-        auth: {
-            user: 'mpt.projects236@gmail.com', // generated ethereal user
-            pass: 'mpttupatop', // generated ethereal password
-        },
-    });
-
-    // send mail with defined transport object
-    transporter.sendMail({
-        from: '"Reform juice" <mpt.projects236@gmail.com>', // sender address
-        to: "p.a.kononenkov@gmail.com", // list of receivers
-        subject: "Hello ✔", // Subject line
-        text: "Hello world?", // plain text body
-        html: "<b>Hello world?</b>", // html body
-    });
-    
-    res.redirect('/main')
-}
-
 module.exports = {
     getProductsForShop,
     getProductFromShop,
@@ -272,6 +242,5 @@ module.exports = {
     deleteProduct,
     addToBasket,
     removeProductFromCart,
-    getProductsFromCart,
-    completeOrder
+    getProductsFromCart
 }

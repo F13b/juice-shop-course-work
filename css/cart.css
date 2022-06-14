@@ -126,7 +126,7 @@ svg path {
 
 .place-order-form {
     width: 50%;
-    margin: 0 auto;
+    margin: 40px auto;
     display: flex;
     justify-content: space-around;
 }

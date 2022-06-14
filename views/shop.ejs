@@ -45,8 +45,8 @@
     </header>
 
     <div class="content">
-        <div class="product-cards-container">
-            <% if (juice.length) {%>
+        <% if (juice.length) {%>
+            <div class="product-cards-container">
                 <% juice.forEach(({id, Name, Price, Images}) => { %>
                     <div class="product-card">
                         <a href="/shop/<%= id %>" class="card-product-link">
@@ -57,15 +57,15 @@
                         </a>
                     </div>
                 <% }) %>
-            <% } else { %>
-                <div class="no-products-container">
-                    <h1 class="no-products">Sorry, it looks like there are no products in the store right now... (˘･_･˘)</h1>
-                    <div class="logistics-man">
-                        <canvas class="rive-logistic" id="canvas" width="500" height="500" style="background: #fff"></canvas>
-                    </div>
+            </div>
+        <% } else { %>
+            <div class="no-products-container">
+                <h1 class="no-products">Sorry, it looks like there are no products in the store right now... (˘･_･˘)</h1>
+                <div class="logistics-man">
+                    <canvas class="rive-logistic" id="canvas" width="500" height="500" style="background: #fff"></canvas>
                 </div>
-            <% } %>   
-        </div>
+            </div>
+        <% } %>   
     </div>
 
     <footer class="footer">
