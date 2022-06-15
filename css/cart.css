@@ -124,6 +124,10 @@ svg path {
     stroke-width:inherit;
 }
 
+a {
+    text-decoration: none;
+}
+
 .place-order-form {
     width: 50%;
     margin: 40px auto;

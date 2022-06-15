@@ -232,6 +232,23 @@ const removeProductFromCart = async (req, res) => {
     }
 }
 
+const confirmOrder = async (req, res) => {
+    let user = getData(req);
+
+    const user_id = user.id;
+
+    let user_order = await Order.findOne({User: user_id});
+
+    if (user_order) {
+        Order.findByIdAndDelete(user_order.id)
+        .then((result) => res.redirect('/main'))
+        .catch((error) => {
+        console.log(error);
+            res.redirect('/error')
+        })
+    }
+}
+
 module.exports = {
     getProductsForShop,
     getProductFromShop,
@@ -242,5 +259,6 @@ module.exports = {
     deleteProduct,
     addToBasket,
     removeProductFromCart,
-    getProductsFromCart
+    getProductsFromCart,
+    confirmOrder
 }
